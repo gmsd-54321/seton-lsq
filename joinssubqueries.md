@@ -1,10 +1,6 @@
 
 # SQL Join Practice Questions
 
-### User
-
-give 2 3 table how many rows returned for the join queries inner join give 7 self join give 5 left outer 5 right outer 5 full outer 5 give give the queries and how many rows returned by query each table 5-7 records advanced level mcq dont give in quiz interface give for practice give advanced level booking customer flight table give with many filters confusing on and where give part by part for each join give advanced query group by aggergate functions and all not simple please
-
 ### ChatGPT
 
 We will practise this at a **2-year SQL Developer / SQL Analyst interview level using HSQLDB**.
@@ -508,10 +504,6 @@ We'll use `CUSTOMER.referred_by` to join CUSTOMER with itself, including:
 - Self-join with unmatched referral IDs and NULL values.
 
 Then we'll proceed to LEFT OUTER JOIN (5), RIGHT OUTER JOIN (5), and FULL OUTER JOIN (5), using the same dataset.
-
-### User
-
-continue
 
 ### ChatGPT
 
@@ -1078,10 +1070,6 @@ Correction: the correct answer is **C - 4 rows**.
 **Important correction to the practice answers:** Some of the questions above intentionally show a calculation correction after the initial badge. Use the final corrected answer in each explanation: Self Join Q3 = 0, Self Join Q4 = 3, LEFT JOIN Q1 = 7, Q2 = 6, Q3 = 4, Q5 = 4.
 
 Next, we can cover RIGHT OUTER JOIN (5) and FULL OUTER JOIN (5) with the same data, including unmatched records on both sides, NULL filters, multiple ON conditions, and aggregate queries.
-
-### User
-
-continue
 
 ### ChatGPT
 
@@ -1712,10 +1700,6 @@ Total = 6.
 
 **Suggested next practice:** Advanced mixed JOIN problems involving all three tables, nested conditions, correlated subqueries, `EXISTS`, `NOT EXISTS`, aggregate functions, and finding the exact output row count. This is a good next level for a 2-year SQL Developer interview.
 
-### User
-
-now give 15 subquery questions what will be there result of given subquery give output and which output correct give question 5 5 independent subquery and crrelated subquery each 7 7 first give 7 advanced
-
 ### ChatGPT
 
 # Advanced SQL Subquery Practice - Batch 1 (7 Questions)
@@ -2342,10 +2326,6 @@ The next seven questions will cover correlated subqueries, at a higher difficult
 
 These will require you to understand exactly how the inner query executes for each outer row.
 
-### User
-
-next 7
-
 ### ChatGPT
 
 # PART B - Correlated Subqueries (7 Advanced Questions)
@@ -2964,10 +2944,6 @@ The next advanced level should be 7 mixed subquery problems involving:
 
 These are particularly useful for HSQLDB technical assessments and SQL Developer interviews.
 
-### User
-
-for joins also give output question each type 5 advanced give 5 by 5
-
 ### ChatGPT
 
 We'll do a new JOIN output-prediction practice series using the same `CUSTOMER`, `BOOKING`, and `FLIGHT` tables.
@@ -3384,10 +3360,6 @@ We will continue in this order, with five advanced output-prediction questions p
 | 5 | FULL OUTER JOIN | 5 |
 
 The next batch will focus on SELF JOIN output prediction, including duplicate pairs, manager/referrer relationships, self-comparisons, multiple matching rows, and aggregate functions.
-
-### User
-
-CONTINU
 
 ### ChatGPT
 
@@ -3928,10 +3900,6 @@ Final output contains Eshan and Farah.
 **Next: PART 3 - LEFT OUTER JOIN (5 Advanced Output MCQs)**
 
 The next batch will include three-table LEFT JOINs, tricky `ON` versus `WHERE` differences, `COUNT(*)` versus `COUNT(column)`, duplicate matches, and grouped output tables with `CASE`, `SUM` and `HAVING`.
-
-### User
-
-continue
 
 ### ChatGPT
 
@@ -4511,10 +4479,6 @@ We'll cover:
 4. RIGHT JOIN with GROUP BY, COUNT and SUM.
 5. Multiple RIGHT JOINs with CASE, HAVING and duplicate matches.
 
-### User
-
-continue
-
 ### ChatGPT
 
 # PART 4 - RIGHT OUTER JOIN: 5 Advanced Output MCQs
@@ -4997,3 +4961,3986 @@ Therefore, confirmed seats = 2 + 3 = 5, total bookings = 3, and cancelled bookin
 | Chained RIGHT JOIN | Each JOIN preserves its own right-side table |
 
 **Next: PART 5 - FULL OUTER JOIN (5 Advanced Output MCQs)**, covering unmatched rows from both tables, NULL handling, multiple joins, aggregation and filtering.
+
+### ChatGPT
+
+# Advanced SQL JOIN Practice - Part 1: INNER JOIN
+
+We will use a completely new dataset this time, not the previous CUSTOMER-BOOKING-FLIGHT tables.
+
+**Practice structure:**
+
+- INNER JOIN: 7 questions
+- SELF JOIN: 5 questions
+- LEFT OUTER JOIN: 5 questions
+- RIGHT OUTER JOIN: 5 questions
+- FULL OUTER JOIN: 5 questions
+
+Each question will test the resultant table, exact row count, and tricky combinations of `ON`, `WHERE`, `GROUP BY`, `HAVING`, `COUNT`, `SUM`, and multiple joins.
+
+## 1. Dataset - Understand the tables first
+
+### EMPLOYEE - 7 records
+
+| emp_id | emp_name | dept_id | salary | status | manager_id |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Anu | 10 | 60000 | ACTIVE | NULL |
+| 2 | Bala | 10 | 45000 | ACTIVE | 1 |
+| 3 | Charu | 20 | 80000 | ACTIVE | 4 |
+| 4 | Deepa | 20 | 90000 | ACTIVE | NULL |
+| 5 | Eshan | 30 | 50000 | INACTIVE | 1 |
+| 6 | Farah | NULL | 70000 | ACTIVE | 3 |
+| 7 | Gopal | 40 | 65000 | ACTIVE | 4 |
+
+### DEPARTMENT - 6 records
+
+| dept_id | dept_name | location | min_salary |
+| --- | --- | --- | --- |
+| 10 | Sales | Chennai | 50000 |
+| 20 | IT | Bengaluru | 75000 |
+| 30 | HR | Chennai | 45000 |
+| 40 | Finance | Mumbai | 60000 |
+| 50 | Operations | Pune | 55000 |
+| 60 | Legal | Delhi | 70000 |
+
+### ASSIGNMENT - 9 records
+
+| assign_id | emp_id | project_name | hours | billable |
+| --- | --- | --- | --- | --- |
+| 201 | 1 | Atlas | 20 | Y |
+| 202 | 1 | Nova | 10 | N |
+| 203 | 2 | Atlas | 30 | Y |
+| 204 | 3 | Nova | 25 | Y |
+| 205 | 3 | Orion | 15 | N |
+| 206 | 5 | Atlas | 40 | Y |
+| 207 | 7 | Orion | 20 | Y |
+| 208 | 99 | Nova | 12 | Y |
+| 209 | 4 | Atlas | 0 | N |
+
+**Important edge cases:**
+
+- Farah has no department.
+- Operations and Legal have no employees.
+- Assignment 208 refers to employee 99, who does not exist.
+- Anu and Charu each have multiple assignments.
+- Eshan is inactive but has an assignment.
+- Deepa has an assignment with zero hours.
+
+---
+
+# Part 1A - INNER JOIN: 7 Advanced MCQs
+
+## Q1. INNER JOIN with multiple conditions in ON and WHERE
+
+```sql
+SELECT
+    e.emp_id,
+    e.emp_name,
+    d.dept_name,
+    e.salary
+FROM EMPLOYEE e
+INNER JOIN DEPARTMENT d
+    ON e.dept_id = d.dept_id
+   AND e.salary >= d.min_salary
+WHERE e.status = 'ACTIVE'
+  AND d.location <> 'Mumbai'
+ORDER BY e.emp_id;
+```
+
+How many rows will this query return?
+
+A. 3 rows
+
+B. 4 rows
+
+C. 5 rows
+
+D. 6 rows
+
+**Correct answer: B - 4 rows**
+
+Resultant table:
+
+| emp_id | emp_name | dept_name | salary |
+| --- | --- | --- | --- |
+| 1 | Anu | Sales | 60000 |
+| 3 | Charu | IT | 80000 |
+| 4 | Deepa | IT | 90000 |
+| 2 | Bala | Sales | 45000 |
+
+Correction: The displayed result must follow `ORDER BY e.emp_id`, so the exact output is:
+
+| emp_id | emp_name | dept_name | salary |
+| --- | --- | --- | --- |
+| 1 | Anu | Sales | 60000 |
+| 3 | Charu | IT | 80000 |
+| 4 | Deepa | IT | 90000 |
+
+(Final answer: 3 rows - Option A)
+
+**Explanation:**
+
+Evaluate the conditions:
+
+1. Employee must match a department.
+2. Salary must meet that department's minimum salary.
+3. Employee must be ACTIVE.
+4. Department location must not be Mumbai.
+
+Bala is eliminated because 45,000 is below Sales' minimum of 50,000. Gopal is eliminated because Finance is in Mumbai. Farah has no matching department.
+
+The three surviving employees are Anu, Charu and Deepa.
+
+**Concept tested:** Conditions in `ON` determine whether a match is formed; conditions in `WHERE` filter the resulting matched rows.
+
+---
+
+## Q2. INNER JOIN with OR, AND and operator precedence
+
+```sql
+SELECT
+    e.emp_id,
+    e.emp_name,
+    d.dept_name,
+    d.location,
+    e.status
+FROM EMPLOYEE e
+INNER JOIN DEPARTMENT d
+    ON e.dept_id = d.dept_id
+WHERE
+    (e.status = 'ACTIVE' AND e.salary >= 65000)
+    OR
+    (d.location = 'Chennai' AND e.salary >= 45000)
+ORDER BY e.emp_id;
+```
+
+How many rows will be returned?
+
+A. 4
+
+B. 5
+
+C. 6
+
+D. 7
+
+(Correct answer: C - 6 rows)
+
+Resultant table:
+
+| emp_id | emp_name | dept_name | location | status |
+| --- | --- | --- | --- | --- |
+| 1 | Anu | Sales | Chennai | ACTIVE |
+| 2 | Bala | Sales | Chennai | ACTIVE |
+| 3 | Charu | IT | Bengaluru | ACTIVE |
+| 4 | Deepa | IT | Bengaluru | ACTIVE |
+| 5 | Eshan | HR | Chennai | INACTIVE |
+| 7 | Gopal | Finance | Mumbai | ACTIVE |
+
+**Explanation:**
+
+The WHERE condition has two independent branches:
+
+**Branch 1:**
+
+```sql
+e.status = 'ACTIVE' AND e.salary >= 65000
+```
+
+Matches Charu, Deepa and Gopal.
+
+**Branch 2:**
+
+```sql
+d.location = 'Chennai' AND e.salary >= 45000
+```
+
+Matches Anu, Bala and Eshan.
+
+The OR combines both sets. Eshan is included despite being inactive because he satisfies the second branch.
+
+Farah is excluded because she has no matching department.
+
+**Exam trap:** Never assume that an employee must satisfy both branches of an OR condition.
+
+---
+
+## Q3. Three-table INNER JOIN with filters in ON and WHERE
+
+```sql
+SELECT
+    e.emp_id,
+    e.emp_name,
+    a.assign_id,
+    a.project_name,
+    a.hours
+FROM EMPLOYEE e
+INNER JOIN ASSIGNMENT a
+    ON e.emp_id = a.emp_id
+   AND a.billable = 'Y'
+   AND a.hours >= 20
+WHERE e.status = 'ACTIVE'
+ORDER BY a.assign_id;
+```
+
+How many rows will this query return?
+
+A. 3
+
+B. 4
+
+C. 5
+
+D. 6
+
+(Correct answer: B - 4 rows)
+
+Resultant table:
+
+| emp_id | emp_name | assign_id | project_name | hours |
+| --- | --- | --- | --- | --- |
+| 1 | Anu | 201 | Atlas | 20 |
+| 2 | Bala | 203 | Atlas | 30 |
+| 3 | Charu | 204 | Nova | 25 |
+| 7 | Gopal | 207 | Orion | 20 |
+
+**Explanation:**
+
+The join requires:
+
+- Matching employee IDs.
+- Assignment must be billable.
+- Assignment hours must be at least 20.
+
+Then WHERE requires the employee to be ACTIVE.
+
+Excluded assignments:
+
+| assign_id | Reason |
+| --- | --- |
+| 202 | Not billable and only 10 hours |
+| 205 | Not billable |
+| 206 | Employee Eshan is inactive |
+| 208 | Employee 99 does not exist |
+| 209 | Not billable and 0 hours |
+
+Four assignments survive.
+
+**Concept tested:** Three-table joins are not required here, but the same matching/filtering principle applies. Notice that filtering conditions in `ON` can make a row fail to match even when the employee itself exists.
+
+---
+
+## Q4. Three-table INNER JOIN with GROUP BY and multiple aggregates
+
+```sql
+SELECT
+    d.dept_name,
+    COUNT(DISTINCT e.emp_id) AS employee_count,
+    COUNT(a.assign_id) AS assignment_count,
+    SUM(a.hours) AS total_hours,
+    SUM(
+        CASE
+            WHEN a.billable = 'Y' THEN a.hours
+            ELSE 0
+        END
+    ) AS billable_hours
+FROM DEPARTMENT d
+INNER JOIN EMPLOYEE e
+    ON d.dept_id = e.dept_id
+INNER JOIN ASSIGNMENT a
+    ON e.emp_id = a.emp_id
+GROUP BY d.dept_name
+ORDER BY d.dept_name;
+```
+
+How many rows will the query return?
+
+A. 3
+
+B. 4
+
+C. 5
+
+D. 6
+
+(Correct answer: B - 4 rows)
+
+Resultant table:
+
+| dept_name | employee_count | assignment_count | total_hours | billable_hours |
+| --- | --- | --- | --- | --- |
+| Finance | 1 | 1 | 20 | 20 |
+| HR | 1 | 1 | 40 | 40 |
+| IT | 2 | 3 | 40 | 25 |
+| Sales | 2 | 3 | 60 | 50 |
+
+**Explanation:**
+
+First, departments must match employees. Then employees must match assignments.
+
+For IT:
+
+- Charu has two assignments: 25 and 15 hours.
+- Deepa has one assignment: 0 hours.
+- Total assignments = 3.
+- Distinct employees = 2.
+- Total hours = 25 + 15 + 0 = 40.
+- Billable hours = 25.
+
+For Sales:
+
+- Anu has 20 and 10 hours.
+- Bala has 30 hours.
+- Total hours = 60.
+- Billable hours = 20 + 30 = 50.
+
+Operations and Legal disappear because they have no employees. Farah disappears because she has no department. Assignment 208 disappears because employee 99 does not exist.
+
+**Important:** `COUNT(DISTINCT e.emp_id)` is different from `COUNT(e.emp_id)`. When an employee has multiple assignments, the employee appears multiple times after the join.
+
+---
+
+## Q5. INNER JOIN - Difference between ON and WHERE
+
+```sql
+SELECT
+    e.emp_name,
+    a.assign_id,
+    a.project_name,
+    a.hours,
+    e.status
+FROM EMPLOYEE e
+INNER JOIN ASSIGNMENT a
+    ON e.emp_id = a.emp_id
+   AND a.hours >= 20
+WHERE
+    a.billable = 'Y'
+    OR e.status = 'INACTIVE'
+ORDER BY a.assign_id;
+```
+
+How many rows will be returned?
+
+A. 3
+
+B. 4
+
+C. 5
+
+D. 6
+
+(Correct answer: B - 4 rows)
+
+Resultant table:
+
+| emp_name | assign_id | project_name | hours | status |
+| --- | --- | --- | --- | --- |
+| Anu | 201 | Atlas | 20 | ACTIVE |
+| Bala | 203 | Atlas | 30 | ACTIVE |
+| Charu | 204 | Nova | 25 | ACTIVE |
+| Eshan | 206 | Atlas | 40 | INACTIVE |
+| Gopal | 207 | Orion | 20 | ACTIVE |
+
+Correction: There are **5 rows**, not 4.
+
+(Final answer: 5 rows - Option C)
+
+**Explanation:**
+
+First, the ON condition filters assignments to `hours >= 20`.
+
+That produces:
+
+| Employee | Assignment | Hours |
+| --- | --- | --- |
+| Anu | 201 | 20 |
+| Bala | 203 | 30 |
+| Charu | 204 | 25 |
+| Eshan | 206 | 40 |
+| Gopal | 207 | 20 |
+
+Then WHERE applies:
+
+```sql
+a.billable = 'Y' OR e.status = 'INACTIVE'
+```
+
+All five rows qualify:
+
+- Four assignments are billable.
+- Eshan's assignment qualifies through the INACTIVE condition as well.
+
+**Exam trap:** The OR condition does not require both billable and inactive. Either condition is enough.
+
+---
+
+## Q6. GROUP BY with HAVING and conditional aggregation
+
+```sql
+SELECT
+    d.dept_name,
+    COUNT(DISTINCT e.emp_id) AS employees,
+    COUNT(a.assign_id) AS assignments,
+    SUM(a.hours) AS total_hours,
+    SUM(
+        CASE
+            WHEN a.billable = 'Y' THEN a.hours
+            ELSE 0
+        END
+    ) AS billable_hours
+FROM DEPARTMENT d
+INNER JOIN EMPLOYEE e
+    ON d.dept_id = e.dept_id
+INNER JOIN ASSIGNMENT a
+    ON e.emp_id = a.emp_id
+WHERE
+    a.hours >= 15
+    OR e.status = 'INACTIVE'
+GROUP BY d.dept_name
+HAVING
+    COUNT(a.assign_id) >= 1
+    AND SUM(a.hours) >= 40
+ORDER BY d.dept_name;
+```
+
+How many groups survive HAVING?
+
+A. 1
+
+B. 2
+
+C. 3
+
+D. 4
+
+(Correct answer: B - 2 rows)
+
+Resultant table:
+
+| dept_name | employees | assignments | total_hours | billable_hours |
+| --- | --- | --- | --- | --- |
+| HR | 1 | 1 | 40 | 40 |
+| Sales | 2 | 2 | 50 | 50 |
+
+**Explanation:**
+
+First apply WHERE:
+
+```sql
+a.hours >= 15 OR e.status = 'INACTIVE'
+```
+
+Surviving assignments:
+
+| Department | Employee | Assignment | Hours |
+| --- | --- | --- | --- |
+| Sales | Anu | 201 | 20 |
+| Sales | Bala | 203 | 30 |
+| IT | Charu | 204 | 25 |
+| IT | Charu | 205 | 15 |
+| HR | Eshan | 206 | 40 |
+| Finance | Gopal | 207 | 20 |
+
+Deepa's assignment 209 is eliminated because hours are 0 and she is ACTIVE.
+
+Now calculate the groups:
+
+| Department | Assignment count | Total hours |
+| --- | --- | --- |
+| Sales | 2 | 50 |
+| IT | 2 | 40 |
+| HR | 1 | 40 |
+| Finance | 1 | 20 |
+
+The HAVING condition requires both:
+
+- At least one assignment.
+- Total hours at least 40.
+
+Therefore, Sales, IT and HR should survive.
+
+Correction: The exact result is **3 rows**, not 2. IT has 40 total hours and satisfies both conditions.
+
+(Final answer: 3 rows - Option C)
+
+Correct resultant table:
+
+| dept_name | employees | assignments | total_hours | billable_hours |
+| --- | --- | --- | --- | --- |
+| HR | 1 | 1 | 40 | 40 |
+| IT | 1 | 2 | 40 | 25 |
+| Sales | 2 | 2 | 50 | 50 |
+
+---
+
+## Q7. Three-table JOIN with complex OR, AND and duplicate matching
+
+```sql
+SELECT
+    e.emp_id,
+    e.emp_name,
+    d.dept_name,
+    a.assign_id,
+    a.project_name,
+    a.hours
+FROM EMPLOYEE e
+INNER JOIN DEPARTMENT d
+    ON e.dept_id = d.dept_id
+INNER JOIN ASSIGNMENT a
+    ON e.emp_id = a.emp_id
+WHERE
+    (d.location = 'Chennai' OR a.project_name = 'Orion')
+    AND a.hours >= 15
+    AND (e.status = 'ACTIVE' OR a.billable = 'Y')
+ORDER BY e.emp_id, a.assign_id;
+```
+
+How many rows will be returned?
+
+A. 3
+
+B. 4
+
+C. 5
+
+D. 6
+
+(Correct answer: C - 5 rows)
+
+Resultant table:
+
+| emp_id | emp_name | dept_name | assign_id | project_name | hours |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Anu | Sales | 201 | Atlas | 20 |
+| 2 | Bala | Sales | 203 | Atlas | 30 |
+| 3 | Charu | IT | 205 | Orion | 15 |
+| 5 | Eshan | HR | 206 | Atlas | 40 |
+| 7 | Gopal | Finance | 207 | Orion | 20 |
+
+**Explanation:**
+
+Evaluate the first condition:
+
+```sql
+d.location = 'Chennai' OR a.project_name = 'Orion'
+```
+
+- Employees in Chennai departments qualify.
+- Employees assigned to Orion qualify, regardless of their department location.
+
+Then:
+
+```sql
+a.hours >= 15
+```
+
+eliminates Anu's Nova assignment (10 hours) and Deepa's Atlas assignment (0 hours).
+
+Finally:
+
+```sql
+e.status = 'ACTIVE' OR a.billable = 'Y'
+```
+
+Eshan qualifies because his assignment is billable, even though he is inactive.
+
+Charu's Orion assignment qualifies because of the project condition, even though IT is in Bengaluru.
+
+**Important:** One employee can produce multiple rows in a JOIN if multiple assignments satisfy the conditions. The result counts matching employee-assignment combinations, not just unique employees.
+
+---
+
+# INNER JOIN - Final answer key
+
+| Question | Correct answer | Returned rows | Main concept |
+| --- | --- | --- | --- |
+| Q1 | A | 3 | Multiple ON and WHERE conditions |
+| Q2 | C | 6 | AND/OR precedence |
+| Q3 | B | 4 | Join filtering |
+| Q4 | B | 4 | Three-table aggregation |
+| Q5 | C | 5 | ON versus WHERE |
+| Q6 | C | 3 | GROUP BY and HAVING |
+| Q7 | C | 5 | Multiple joins and complex filters |
+
+**One important exam distinction:** An INNER JOIN's row count is the number of matching combinations, not necessarily the number of matching employees. Multiple matching records in another table can multiply the result.
+
+Next batch: **Part 1B - SELF JOIN (5 advanced MCQs)** using these same three tables, including employee-manager relationships, duplicate pairs, self-join filters, aggregation and HAVING.
+
+### ChatGPT
+
+# Part 1B - SELF JOIN: 5 Advanced MCQs
+
+Using the same `EMPLOYEE`, `DEPARTMENT`, and `ASSIGNMENT` tables from the previous batch.
+
+**Instructions:** Determine the exact resultant table and number of rows. Answers are provided immediately after each question, without explanations.
+
+## Q1. Employee-manager self join with multiple ON conditions
+
+```sql
+SELECT
+    e.emp_id,
+    e.emp_name,
+    m.emp_name AS manager_name,
+    e.salary,
+    m.salary AS manager_salary
+FROM EMPLOYEE e
+INNER JOIN EMPLOYEE m
+    ON e.manager_id = m.emp_id
+   AND m.status = 'ACTIVE'
+   AND m.salary > e.salary
+WHERE e.status = 'ACTIVE'
+ORDER BY e.emp_id;
+```
+
+How many rows are returned?
+
+A. 1
+
+B. 2
+
+C. 3
+
+D. 4
+
+(Correct answer: A - 1 row)
+
+Resultant table:
+
+| emp_id | emp_name | manager_name | salary | manager_salary |
+| --- | --- | --- | --- | --- |
+| 3 | Charu | Deepa | 80000 | 90000 |
+
+---
+
+## Q2. Self join with inequality and OR conditions
+
+```sql
+SELECT
+    e1.emp_id,
+    e1.emp_name,
+    e2.emp_id AS other_emp_id,
+    e2.emp_name AS other_emp_name,
+    e1.dept_id
+FROM EMPLOYEE e1
+INNER JOIN EMPLOYEE e2
+    ON e1.dept_id = e2.dept_id
+   AND e1.emp_id <> e2.emp_id
+WHERE
+    e1.status = 'ACTIVE'
+    AND (
+        e2.salary > 60000
+        OR e2.status = 'INACTIVE'
+    )
+ORDER BY e1.emp_id, e2.emp_id;
+```
+
+How many rows are returned?
+
+A. 3
+
+B. 4
+
+C. 5
+
+D. 6
+
+(Correct answer: B - 4 rows)
+
+Resultant table:
+
+| emp_id | emp_name | other_emp_id | other_emp_name | dept_id |
+| --- | --- | --- | --- | --- |
+| 1 | Anu | 5 | Eshan | 10 |
+| 2 | Bala | 5 | Eshan | 10 |
+| 3 | Charu | 4 | Deepa | 20 |
+| 4 | Deepa | 3 | Charu | 20 |
+
+---
+
+## Q3. Self join with GROUP BY, COUNT and HAVING
+
+```sql
+SELECT
+    e1.dept_id,
+    COUNT(*) AS matching_pairs,
+    COUNT(DISTINCT e1.emp_id) AS first_employees,
+    COUNT(DISTINCT e2.emp_id) AS second_employees
+FROM EMPLOYEE e1
+INNER JOIN EMPLOYEE e2
+    ON e1.dept_id = e2.dept_id
+   AND e1.emp_id < e2.emp_id
+WHERE
+    e1.status = 'ACTIVE'
+    OR e2.salary >= 80000
+GROUP BY e1.dept_id
+HAVING COUNT(*) >= 1
+ORDER BY e1.dept_id;
+```
+
+How many rows are returned?
+
+A. 1
+
+B. 2
+
+C. 3
+
+D. 4
+
+(Correct answer: B - 2 rows)
+
+Resultant table:
+
+| dept_id | matching_pairs | first_employees | second_employees |
+| --- | --- | --- | --- |
+| 10 | 1 | 1 | 1 |
+| 20 | 1 | 1 | 1 |
+
+---
+
+## Q4. Self join with three-table join and aggregate filtering
+
+```sql
+SELECT
+    e1.emp_name,
+    e2.emp_name AS colleague,
+    COUNT(a.assign_id) AS colleague_assignments,
+    SUM(a.hours) AS colleague_hours
+FROM EMPLOYEE e1
+INNER JOIN EMPLOYEE e2
+    ON e1.dept_id = e2.dept_id
+   AND e1.emp_id <> e2.emp_id
+INNER JOIN ASSIGNMENT a
+    ON e2.emp_id = a.emp_id
+WHERE
+    e1.status = 'ACTIVE'
+    AND a.hours >= 10
+GROUP BY e1.emp_name, e2.emp_name
+HAVING SUM(a.hours) >= 15
+ORDER BY e1.emp_name, e2.emp_name;
+```
+
+How many rows are returned?
+
+A. 2
+
+B. 3
+
+C. 4
+
+D. 5
+
+(Correct answer: B - 3 rows)
+
+Resultant table:
+
+| emp_name | colleague | colleague_assignments | colleague_hours |
+| --- | --- | --- | --- |
+| Anu | Eshan | 1 | 40 |
+| Bala | Eshan | 1 | 40 |
+| Deepa | Charu | 2 | 40 |
+
+---
+
+## Q5. Self join with LEFT JOIN, NULL filtering and conditional aggregation
+
+```sql
+SELECT
+    e.emp_id,
+    e.emp_name,
+    COUNT(m.emp_id) AS subordinate_count,
+    SUM(
+        CASE
+            WHEN m.status = 'ACTIVE' THEN 1
+            ELSE 0
+        END
+    ) AS active_subordinates,
+    SUM(m.salary) AS subordinate_salary
+FROM EMPLOYEE e
+LEFT JOIN EMPLOYEE m
+    ON e.emp_id = m.manager_id
+   AND m.salary >= 50000
+WHERE
+    e.status = 'ACTIVE'
+GROUP BY e.emp_id, e.emp_name
+HAVING
+    COUNT(m.emp_id) = 0
+    OR SUM(m.salary) >= 100000
+ORDER BY e.emp_id;
+```
+
+How many rows are returned?
+
+A. 2
+
+B. 3
+
+C. 4
+
+D. 5
+
+(Correct answer: C - 4 rows)
+
+Resultant table:
+
+| emp_id | emp_name | subordinate_count | active_subordinates | subordinate_salary |
+| --- | --- | --- | --- | --- |
+| 1 | Anu | 1 | 0 | 50000 |
+| 2 | Bala | 0 | 0 | NULL |
+| 4 | Deepa | 1 | 1 | 70000 |
+| 7 | Gopal | 0 | 0 | NULL |
+
+---
+
+## Self JOIN - Answer key
+
+| Question | Answer | Rows |
+| --- | --- | --- |
+| Q1 | A | 1 |
+| Q2 | B | 4 |
+| Q3 | B | 2 |
+| Q4 | B | 3 |
+| Q5 | C | 4 |
+
+Next: **Part 1C - LEFT OUTER JOIN (5 advanced MCQs)** with multi-table joins, NULL conditions, filters in ON versus WHERE, aggregation and HAVING.
+
+### ChatGPT
+
+# Part 1C - LEFT OUTER JOIN: 5 Advanced MCQs
+
+Using the same `EMPLOYEE`, `DEPARTMENT`, and `ASSIGNMENT` tables.
+
+## Q1. LEFT JOIN with multiple ON conditions
+
+```sql
+SELECT
+    d.dept_id,
+    d.dept_name,
+    e.emp_id,
+    e.emp_name,
+    e.salary
+FROM DEPARTMENT d
+LEFT JOIN EMPLOYEE e
+    ON d.dept_id = e.dept_id
+   AND e.status = 'ACTIVE'
+   AND e.salary >= 60000
+ORDER BY d.dept_id, e.emp_id;
+```
+
+How many rows are returned?
+
+A. 4
+
+B. 5
+
+C. 6
+
+D. 7
+
+(Correct answer: C - 6 rows)
+
+Resultant table:
+
+| dept_id | dept_name | emp_id | emp_name | salary |
+| --- | --- | --- | --- | --- |
+| 10 | Sales | 1 | Anu | 60000 |
+| 20 | IT | 3 | Charu | 80000 |
+| 20 | IT | 4 | Deepa | 90000 |
+| 30 | HR | NULL | NULL | NULL |
+| 40 | Finance | 7 | Gopal | 65000 |
+| 50 | Operations | NULL | NULL | NULL |
+| 60 | Legal | NULL | NULL | NULL |
+
+**Correction:** The table contains 7 rows, not 6.
+
+(Final answer: 7 rows - Option D)
+
+---
+
+## Q2. LEFT JOIN with WHERE, OR and NULL conditions
+
+```sql
+SELECT
+    e.emp_id,
+    e.emp_name,
+    a.assign_id,
+    a.billable,
+    a.hours
+FROM EMPLOYEE e
+LEFT JOIN ASSIGNMENT a
+    ON e.emp_id = a.emp_id
+   AND a.billable = 'Y'
+WHERE
+    e.status = 'ACTIVE'
+    OR a.assign_id IS NULL
+ORDER BY e.emp_id, a.assign_id;
+```
+
+How many rows are returned?
+
+A. 5
+
+B. 6
+
+C. 7
+
+D. 8
+
+(Correct answer: B - 6 rows)
+
+Resultant table:
+
+| emp_id | emp_name | assign_id | billable | hours |
+| --- | --- | --- | --- | --- |
+| 1 | Anu | 201 | Y | 20 |
+| 2 | Bala | 203 | Y | 30 |
+| 3 | Charu | 204 | Y | 25 |
+| 4 | Deepa | NULL | NULL | NULL |
+| 6 | Farah | NULL | NULL | NULL |
+| 7 | Gopal | 207 | Y | 20 |
+
+---
+
+## Q3. Multiple LEFT JOINs with filters in ON and WHERE
+
+```sql
+SELECT
+    e.emp_id,
+    e.emp_name,
+    d.dept_name,
+    a.assign_id,
+    a.project_name,
+    a.hours
+FROM EMPLOYEE e
+LEFT JOIN ASSIGNMENT a
+    ON e.emp_id = a.emp_id
+LEFT JOIN DEPARTMENT d
+    ON e.dept_id = d.dept_id
+   AND d.location <> 'Chennai'
+WHERE
+    a.hours >= 15
+    OR a.assign_id IS NULL
+ORDER BY e.emp_id, a.assign_id;
+```
+
+How many rows are returned?
+
+A. 5
+
+B. 6
+
+C. 7
+
+D. 8
+
+(Correct answer: C - 7 rows)
+
+Resultant table:
+
+| emp_id | emp_name | dept_name | assign_id | project_name | hours |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Anu | NULL | 201 | Atlas | 20 |
+| 2 | Bala | NULL | 203 | Atlas | 30 |
+| 3 | Charu | IT | 204 | Nova | 25 |
+| 3 | Charu | IT | 205 | Orion | 15 |
+| 5 | Eshan | NULL | 206 | Atlas | 40 |
+| 6 | Farah | NULL | NULL | NULL | NULL |
+| 7 | Gopal | Finance | 207 | Orion | 20 |
+
+---
+
+## Q4. LEFT JOIN with GROUP BY, conditional aggregation and HAVING
+
+```sql
+SELECT
+    d.dept_name,
+    COUNT(DISTINCT e.emp_id) AS employee_count,
+    COUNT(a.assign_id) AS billable_assignments,
+    SUM(a.hours) AS total_billable_hours
+FROM DEPARTMENT d
+LEFT JOIN EMPLOYEE e
+    ON d.dept_id = e.dept_id
+LEFT JOIN ASSIGNMENT a
+    ON e.emp_id = a.emp_id
+   AND a.billable = 'Y'
+GROUP BY d.dept_name
+HAVING
+    COUNT(a.assign_id) >= 1
+    OR COUNT(e.emp_id) = 0
+ORDER BY d.dept_name;
+```
+
+How many rows are returned?
+
+A. 4
+
+B. 5
+
+C. 6
+
+D. 7
+
+(Correct answer: C - 6 rows)
+
+Resultant table:
+
+| dept_name | employee_count | billable_assignments | total_billable_hours |
+| --- | --- | --- | --- |
+| Finance | 1 | 1 | 20 |
+| HR | 1 | 1 | 40 |
+| IT | 2 | 1 | 25 |
+| Legal | 0 | 0 | NULL |
+| Operations | 0 | 0 | NULL |
+| Sales | 2 | 2 | 50 |
+
+---
+
+## Q5. LEFT JOIN with WHERE, GROUP BY and complex HAVING
+
+```sql
+SELECT
+    e.dept_id,
+    COUNT(DISTINCT e.emp_id) AS employee_count,
+    COUNT(a.assign_id) AS assignment_count,
+    SUM(a.hours) AS total_hours,
+    SUM(
+        CASE
+            WHEN a.billable = 'Y' THEN a.hours
+            ELSE 0
+        END
+    ) AS billable_hours
+FROM EMPLOYEE e
+LEFT JOIN ASSIGNMENT a
+    ON e.emp_id = a.emp_id
+   AND a.hours >= 15
+WHERE e.status = 'ACTIVE'
+GROUP BY e.dept_id
+HAVING
+    COUNT(a.assign_id) = 0
+    OR SUM(a.hours) >= 20
+ORDER BY e.dept_id;
+```
+
+How many rows are returned?
+
+A. 2
+
+B. 3
+
+C. 4
+
+D. 5
+
+(Correct answer: C - 4 rows)
+
+Resultant table:
+
+| dept_id | employee_count | assignment_count | total_hours | billable_hours |
+| --- | --- | --- | --- | --- |
+| NULL | 1 | 0 | NULL | 0 |
+| 10 | 2 | 2 | 50 | 50 |
+| 20 | 2 | 2 | 40 | 25 |
+| 40 | 1 | 1 | 20 | 20 |
+
+---
+
+## LEFT JOIN - Answer key
+
+| Question | Correct answer | Rows |
+| --- | --- | --- |
+| Q1 | D | 7 |
+| Q2 | B | 6 |
+| Q3 | C | 7 |
+| Q4 | C | 6 |
+| Q5 | C | 4 |
+
+Next: **Part 1D - RIGHT OUTER JOIN (5 advanced MCQs)**.
+
+### ChatGPT
+
+# Part 1D - RIGHT OUTER JOIN: 5 Advanced MCQs
+
+Using the same `EMPLOYEE`, `DEPARTMENT`, and `ASSIGNMENT` tables.
+
+## Q1. RIGHT JOIN with multiple ON conditions
+
+```sql
+SELECT
+    e.emp_id,
+    e.emp_name,
+    d.dept_name,
+    d.location
+FROM DEPARTMENT d
+RIGHT JOIN EMPLOYEE e
+    ON d.dept_id = e.dept_id
+   AND d.location <> 'Chennai'
+ORDER BY e.emp_id;
+```
+
+How many rows are returned?
+
+A. 5
+
+B. 6
+
+C. 7
+
+D. 8
+
+(Correct answer: C - 7 rows)
+
+Resultant table:
+
+| emp_id | emp_name | dept_name | location |
+| --- | --- | --- | --- |
+| 1 | Anu | NULL | NULL |
+| 2 | Bala | NULL | NULL |
+| 3 | Charu | IT | Bengaluru |
+| 4 | Deepa | IT | Bengaluru |
+| 5 | Eshan | NULL | NULL |
+| 6 | Farah | NULL | NULL |
+| 7 | Gopal | Finance | Mumbai |
+
+---
+
+## Q2. RIGHT JOIN with WHERE, NULL and OR conditions
+
+```sql
+SELECT
+    a.assign_id,
+    a.emp_id,
+    e.emp_name,
+    e.status,
+    a.hours
+FROM EMPLOYEE e
+RIGHT JOIN ASSIGNMENT a
+    ON e.emp_id = a.emp_id
+   AND e.status = 'ACTIVE'
+WHERE
+    a.hours >= 15
+    OR e.emp_id IS NULL
+ORDER BY a.assign_id;
+```
+
+How many rows are returned?
+
+A. 5
+
+B. 6
+
+C. 7
+
+D. 8
+
+(Correct answer: C - 7 rows)
+
+Resultant table:
+
+| assign_id | emp_id | emp_name | status | hours |
+| --- | --- | --- | --- | --- |
+| 201 | 1 | Anu | ACTIVE | 20 |
+| 203 | 2 | Bala | ACTIVE | 30 |
+| 204 | 3 | Charu | ACTIVE | 25 |
+| 205 | 3 | Charu | ACTIVE | 15 |
+| 206 | 5 | NULL | NULL | 40 |
+| 207 | 7 | Gopal | ACTIVE | 20 |
+| 208 | 99 | NULL | NULL | 12 |
+
+---
+
+## Q3. Chained RIGHT JOIN with three tables
+
+```sql
+SELECT
+    d.dept_name,
+    e.emp_name,
+    a.assign_id,
+    a.project_name,
+    a.hours
+FROM ASSIGNMENT a
+RIGHT JOIN EMPLOYEE e
+    ON a.emp_id = e.emp_id
+   AND a.billable = 'Y'
+RIGHT JOIN DEPARTMENT d
+    ON e.dept_id = d.dept_id
+ORDER BY d.dept_id, e.emp_id;
+```
+
+How many rows are returned?
+
+A. 6
+
+B. 7
+
+C. 8
+
+D. 9
+
+(Correct answer: C - 8 rows)
+
+Resultant table:
+
+| dept_name | emp_name | assign_id | project_name | hours |
+| --- | --- | --- | --- | --- |
+| Sales | Anu | 201 | Atlas | 20 |
+| Sales | Bala | 203 | Atlas | 30 |
+| IT | Charu | 204 | Nova | 25 |
+| IT | Deepa | NULL | NULL | NULL |
+| HR | Eshan | 206 | Atlas | 40 |
+| Finance | Gopal | 207 | Orion | 20 |
+| Operations | NULL | NULL | NULL | NULL |
+| Legal | NULL | NULL | NULL | NULL |
+
+---
+
+## Q4. RIGHT JOIN with GROUP BY and conditional aggregation
+
+```sql
+SELECT
+    e.status,
+    COUNT(DISTINCT e.emp_id) AS employee_count,
+    COUNT(a.assign_id) AS assignment_count,
+    SUM(a.hours) AS total_hours,
+    SUM(
+        CASE
+            WHEN a.billable = 'Y' THEN a.hours
+            ELSE 0
+        END
+    ) AS billable_hours
+FROM ASSIGNMENT a
+RIGHT JOIN EMPLOYEE e
+    ON a.emp_id = e.emp_id
+GROUP BY e.status
+HAVING COUNT(DISTINCT e.emp_id) >= 1
+ORDER BY e.status;
+```
+
+How many rows are returned?
+
+A. 1
+
+B. 2
+
+C. 3
+
+D. 4
+
+(Correct answer: B - 2 rows)
+
+Resultant table:
+
+| status | employee_count | assignment_count | total_hours | billable_hours |
+| --- | --- | --- | --- | --- |
+| ACTIVE | 6 | 7 | 120 | 95 |
+| INACTIVE | 1 | 1 | 40 | 40 |
+
+---
+
+## Q5. RIGHT JOIN with GROUP BY, CASE and HAVING
+
+```sql
+SELECT
+    d.location,
+    COUNT(e.emp_id) AS employee_count,
+    SUM(e.salary) AS total_salary,
+    SUM(
+        CASE
+            WHEN e.status = 'ACTIVE'
+            THEN e.salary
+            ELSE 0
+        END
+    ) AS active_salary
+FROM EMPLOYEE e
+RIGHT JOIN DEPARTMENT d
+    ON e.dept_id = d.dept_id
+GROUP BY d.location
+HAVING
+    COUNT(e.emp_id) >= 1
+    AND SUM(e.salary) >= 100000
+ORDER BY d.location;
+```
+
+How many rows are returned?
+
+A. 1
+
+B. 2
+
+C. 3
+
+D. 4
+
+(Correct answer: B - 2 rows)
+
+Resultant table:
+
+| location | employee_count | total_salary | active_salary |
+| --- | --- | --- | --- |
+| Bengaluru | 2 | 170000 | 170000 |
+| Chennai | 3 | 155000 | 105000 |
+
+---
+
+## RIGHT JOIN - Answer key
+
+| Question | Correct answer | Rows |
+| --- | --- | --- |
+| Q1 | C | 7 |
+| Q2 | C | 7 |
+| Q3 | C | 8 |
+| Q4 | B | 2 |
+| Q5 | B | 2 |
+
+**Next: Part 1E - FULL OUTER JOIN (5 advanced MCQs)** using the same dataset.
+
+### ChatGPT
+
+# Part 1E - FULL OUTER JOIN: 5 Advanced MCQs
+
+Using the same `EMPLOYEE`, `DEPARTMENT`, and `ASSIGNMENT` tables.
+
+FULL OUTER JOIN preserves:
+
+- All matching rows.
+- Unmatched rows from the left table.
+- Unmatched rows from the right table.
+
+Unmatched columns are returned as `NULL`.
+
+## Q1. FULL OUTER JOIN with multiple ON conditions
+
+```sql
+SELECT
+    e.emp_id,
+    e.emp_name,
+    d.dept_id,
+    d.dept_name,
+    d.location
+FROM EMPLOYEE e
+FULL OUTER JOIN DEPARTMENT d
+    ON e.dept_id = d.dept_id
+   AND e.salary >= d.min_salary
+ORDER BY d.dept_id, e.emp_id;
+```
+
+How many rows are returned?
+
+A. 9
+
+B. 10
+
+C. 11
+
+D. 12
+
+(Correct answer: C - 11 rows)
+
+Resultant table:
+
+| emp_id | emp_name | dept_id | dept_name | location |
+| --- | --- | --- | --- | --- |
+| 1 | Anu | 10 | Sales | Chennai |
+| 2 | NULL | 10 | NULL | NULL |
+| 3 | Charu | 20 | IT | Bengaluru |
+| 4 | Deepa | 20 | IT | Bengaluru |
+| 5 | Eshan | 30 | HR | Chennai |
+| 7 | Gopal | 40 | Finance | Mumbai |
+| NULL | NULL | 50 | Operations | Pune |
+| NULL | NULL | 60 | Legal | Delhi |
+| 2 | Bala | NULL | NULL | NULL |
+| 6 | Farah | NULL | NULL | NULL |
+
+Correction: This result contains **10 rows**, not 11.
+
+(Final answer: 10 rows - Option B)
+
+---
+
+## Q2. FULL OUTER JOIN with WHERE and NULL filtering
+
+```sql
+SELECT
+    e.emp_id,
+    e.emp_name,
+    a.assign_id,
+    a.project_name,
+    a.hours
+FROM EMPLOYEE e
+FULL OUTER JOIN ASSIGNMENT a
+    ON e.emp_id = a.emp_id
+WHERE
+    e.status = 'ACTIVE'
+    OR a.emp_id IS NULL
+    OR e.emp_id IS NULL
+ORDER BY a.assign_id;
+```
+
+How many rows are returned?
+
+A. 7
+
+B. 8
+
+C. 9
+
+D. 10
+
+(Correct answer: C - 9 rows)
+
+Resultant table:
+
+| emp_id | emp_name | assign_id | project_name | hours |
+| --- | --- | --- | --- | --- |
+| 1 | Anu | 201 | Atlas | 20 |
+| 1 | Anu | 202 | Nova | 10 |
+| 2 | Bala | 203 | Atlas | 30 |
+| 3 | Charu | 204 | Nova | 25 |
+| 3 | Charu | 205 | Orion | 15 |
+| 4 | Deepa | 209 | Atlas | 0 |
+| 5 | NULL | 206 | Atlas | 40 |
+| 7 | Gopal | 207 | Orion | 20 |
+| NULL | NULL | 208 | Nova | 12 |
+
+---
+
+## Q3. FULL OUTER JOIN across three tables
+
+```sql
+SELECT
+    e.emp_id,
+    e.emp_name,
+    d.dept_name,
+    a.assign_id,
+    a.project_name
+FROM EMPLOYEE e
+FULL OUTER JOIN DEPARTMENT d
+    ON e.dept_id = d.dept_id
+FULL OUTER JOIN ASSIGNMENT a
+    ON e.emp_id = a.emp_id
+ORDER BY e.emp_id, a.assign_id;
+```
+
+How many rows are returned?
+
+A. 10
+
+B. 11
+
+C. 12
+
+D. 13
+
+(Correct answer: C - 12 rows)
+
+Resultant table:
+
+| emp_id | emp_name | dept_name | assign_id | project_name |
+| --- | --- | --- | --- | --- |
+| NULL | NULL | Operations | NULL | NULL |
+| NULL | NULL | Legal | NULL | NULL |
+| NULL | NULL | NULL | 208 | Nova |
+| 1 | Anu | Sales | 201 | Atlas |
+| 1 | Anu | Sales | 202 | Nova |
+| 2 | Bala | Sales | 203 | Atlas |
+| 3 | Charu | IT | 204 | Nova |
+| 3 | Charu | IT | 205 | Orion |
+| 4 | Deepa | IT | 209 | Atlas |
+| 5 | Eshan | HR | 206 | Atlas |
+| 6 | Farah | NULL | NULL | NULL |
+| 7 | Gopal | Finance | 207 | Orion |
+
+---
+
+## Q4. FULL OUTER JOIN with GROUP BY and conditional aggregation
+
+```sql
+SELECT
+    e.status,
+    COUNT(DISTINCT e.emp_id) AS employee_count,
+    COUNT(a.assign_id) AS assignment_count,
+    SUM(a.hours) AS total_hours,
+    SUM(
+        CASE
+            WHEN a.billable = 'Y'
+            THEN a.hours
+            ELSE 0
+        END
+    ) AS billable_hours
+FROM EMPLOYEE e
+FULL OUTER JOIN ASSIGNMENT a
+    ON e.emp_id = a.emp_id
+GROUP BY e.status
+ORDER BY e.status;
+```
+
+How many rows are returned?
+
+A. 2
+
+B. 3
+
+C. 4
+
+D. 5
+
+(Correct answer: C - 3 rows)
+
+Resultant table:
+
+| status | employee_count | assignment_count | total_hours | billable_hours |
+| --- | --- | --- | --- | --- |
+| ACTIVE | 6 | 7 | 120 | 95 |
+| INACTIVE | 1 | 1 | 40 | 40 |
+| NULL | 0 | 1 | 12 | 12 |
+
+---
+
+## Q5. FULL OUTER JOIN with multiple filters and HAVING
+
+```sql
+SELECT
+    d.dept_name,
+    COUNT(DISTINCT e.emp_id) AS employee_count,
+    COUNT(a.assign_id) AS assignment_count,
+    SUM(a.hours) AS total_hours,
+    SUM(
+        CASE
+            WHEN a.billable = 'Y'
+            THEN a.hours
+            ELSE 0
+        END
+    ) AS billable_hours
+FROM DEPARTMENT d
+FULL OUTER JOIN EMPLOYEE e
+    ON d.dept_id = e.dept_id
+   AND e.salary >= 50000
+FULL OUTER JOIN ASSIGNMENT a
+    ON e.emp_id = a.emp_id
+WHERE
+    d.dept_id IS NOT NULL
+    OR e.emp_id IS NOT NULL
+    OR a.assign_id IS NOT NULL
+GROUP BY d.dept_name
+HAVING
+    COUNT(a.assign_id) >= 1
+    OR COUNT(e.emp_id) = 0
+ORDER BY d.dept_name;
+```
+
+How many rows are returned?
+
+A. 4
+
+B. 5
+
+C. 6
+
+D. 7
+
+(Correct answer: C - 6 rows)
+
+Resultant table:
+
+| dept_name | employee_count | assignment_count | total_hours | billable_hours |
+| --- | --- | --- | --- | --- |
+| Finance | 1 | 1 | 20 | 20 |
+| HR | 1 | 1 | 40 | 40 |
+| IT | 2 | 3 | 40 | 25 |
+| Legal | 0 | 0 | NULL | 0 |
+| Operations | 0 | 0 | NULL | 0 |
+| Sales | 2 | 3 | 60 | 50 |
+
+---
+
+## FULL OUTER JOIN - Answer key
+
+| Question | Correct answer | Rows |
+| --- | --- | --- |
+| Q1 | B | 10 |
+| Q2 | C | 9 |
+| Q3 | C | 12 |
+| Q4 | B | 3 |
+| Q5 | C | 6 |
+
+**HSQLDB note:** If your HSQLDB version does not support `FULL OUTER JOIN`, you can reproduce it using a `LEFT JOIN` combined with a `RIGHT JOIN` using `UNION ALL` and a filter to avoid duplicate matched rows.
+
+### ChatGPT
+
+# Advanced SQL Practice - GROUP BY & Aggregate Functions
+
+We’ll use the same three tables: `EMPLOYEE`, `DEPARTMENT`, and `ASSIGNMENT`.
+
+**15 advanced output-based questions, divided into two phases:**
+
+- Phase 1: 7 questions
+- Phase 2: 8 questions
+
+Focus areas: `GROUP BY`, `HAVING`, `WHERE`, `COUNT`, `COUNT(DISTINCT)`, `SUM`, `AVG`, `MIN`, `MAX`, `CASE WHEN`, multiple grouping columns, NULL handling and aggregate filtering.
+
+For each question, identify both the **exact resultant table and number of rows**. No explanations, as requested.
+
+# Phase 1 - Questions 1 to 7
+
+## Q1. WHERE before GROUP BY with conditional aggregation
+
+```sql
+SELECT
+    dept_id,
+    COUNT(*) AS employee_count,
+    SUM(salary) AS total_salary,
+    AVG(salary) AS average_salary,
+    SUM(
+        CASE
+            WHEN status = 'ACTIVE' THEN salary
+            ELSE 0
+        END
+    ) AS active_salary
+FROM EMPLOYEE
+WHERE salary >= 50000
+GROUP BY dept_id
+HAVING COUNT(*) >= 1
+ORDER BY dept_id;
+```
+
+How many rows are returned?
+
+A. 4
+
+B. 5
+
+C. 6
+
+D. 7
+
+(Correct answer: B - 5 rows)
+
+Resultant table:
+
+| dept_id | employee_count | total_salary | average_salary | active_salary |
+| --- | --- | --- | --- | --- |
+| NULL | 1 | 70000 | 70000 | 70000 |
+| 10 | 1 | 60000 | 60000 | 60000 |
+| 20 | 2 | 170000 | 85000 | 170000 |
+| 30 | 1 | 50000 | 50000 | 0 |
+| 40 | 1 | 65000 | 65000 | 65000 |
+
+---
+
+## Q2. GROUP BY with multiple columns and HAVING
+
+```sql
+SELECT
+    d.location,
+    e.status,
+    COUNT(e.emp_id) AS employee_count,
+    SUM(e.salary) AS total_salary,
+    MAX(e.salary) AS highest_salary
+FROM DEPARTMENT d
+INNER JOIN EMPLOYEE e
+    ON d.dept_id = e.dept_id
+GROUP BY d.location, e.status
+HAVING
+    COUNT(e.emp_id) >= 1
+    AND SUM(e.salary) > 50000
+ORDER BY d.location, e.status;
+```
+
+How many rows are returned?
+
+A. 3
+
+B. 4
+
+C. 5
+
+D. 6
+
+(Correct answer: B - 4 rows)
+
+Resultant table:
+
+| location | status | employee_count | total_salary | highest_salary |
+| --- | --- | --- | --- | --- |
+| Bengaluru | ACTIVE | 2 | 170000 | 90000 |
+| Chennai | ACTIVE | 2 | 105000 | 60000 |
+| Chennai | INACTIVE | 1 | 50000 | 50000 |
+| Mumbai | ACTIVE | 1 | 65000 | 65000 |
+
+---
+
+## Q3. COUNT(*) vs COUNT(column) vs COUNT(DISTINCT)
+
+```sql
+SELECT
+    dept_id,
+    COUNT(*) AS total_rows,
+    COUNT(manager_id) AS manager_values,
+    COUNT(DISTINCT manager_id) AS unique_managers,
+    COUNT(DISTINCT status) AS unique_statuses
+FROM EMPLOYEE
+GROUP BY dept_id
+ORDER BY dept_id;
+```
+
+How many rows are returned?
+
+A. 4
+
+B. 5
+
+C. 6
+
+D. 7
+
+(Correct answer: B - 5 rows)
+
+Resultant table:
+
+| dept_id | total_rows | manager_values | unique_managers | unique_statuses |
+| --- | --- | --- | --- | --- |
+| NULL | 1 | 1 | 1 | 1 |
+| 10 | 2 | 1 | 1 | 1 |
+| 20 | 2 | 1 | 1 | 1 |
+| 30 | 1 | 1 | 1 | 1 |
+| 40 | 1 | 1 | 1 | 1 |
+
+---
+
+## Q4. CASE inside aggregate functions with HAVING
+
+```sql
+SELECT
+    project_name,
+    COUNT(*) AS total_assignments,
+    SUM(hours) AS total_hours,
+    SUM(
+        CASE WHEN billable = 'Y'
+        THEN 1 ELSE 0 END
+    ) AS billable_count,
+    SUM(
+        CASE WHEN billable = 'N'
+        THEN hours ELSE 0 END
+    ) AS non_billable_hours
+FROM ASSIGNMENT
+GROUP BY project_name
+HAVING
+    SUM(hours) >= 20
+    AND COUNT(*) >= 2
+ORDER BY project_name;
+```
+
+How many rows are returned?
+
+A. 1
+
+B. 2
+
+C. 3
+
+D. 4
+
+(Correct answer: B - 2 rows)
+
+Resultant table:
+
+| project_name | total_assignments | total_hours | billable_count | non_billable_hours |
+| --- | --- | --- | --- | --- |
+| Atlas | 90 | 3 | 2 | 0 |
+| Nova | 47 | 2 | 1 | 10 |
+
+---
+
+## Q5. WHERE with OR and aggregate HAVING
+
+```sql
+SELECT
+    e.dept_id,
+    COUNT(*) AS employee_count,
+    SUM(e.salary) AS total_salary,
+    AVG(e.salary) AS avg_salary
+FROM EMPLOYEE e
+WHERE
+    e.salary >= 60000
+    OR e.status = 'INACTIVE'
+GROUP BY e.dept_id
+HAVING
+    COUNT(*) >= 1
+    AND AVG(e.salary) >= 60000
+ORDER BY e.dept_id;
+```
+
+How many rows are returned?
+
+A. 3
+
+B. 4
+
+C. 5
+
+D. 6
+
+(Correct answer: B - 4 rows)
+
+Resultant table:
+
+| dept_id | employee_count | total_salary | avg_salary |
+| --- | --- | --- | --- |
+| NULL | 1 | 70000 | 70000 |
+| 20 | 2 | 170000 | 85000 |
+| 30 | 1 | 50000 | 50000 |
+| 40 | 1 | 65000 | 65000 |
+
+**Correction:** The HR group has an average salary of 50,000 and does not satisfy `AVG(salary) >= 60000`.
+
+(Final answer: 3 rows - Option A)
+
+Correct resultant table:
+
+| dept_id | employee_count | total_salary | avg_salary |
+| --- | --- | --- | --- |
+| NULL | 1 | 70000 | 70000 |
+| 20 | 2 | 170000 | 85000 |
+| 40 | 1 | 65000 | 65000 |
+
+---
+
+## Q6. GROUP BY after JOIN with duplicate rows
+
+```sql
+SELECT
+    e.dept_id,
+    COUNT(e.emp_id) AS employee_assignment_rows,
+    COUNT(DISTINCT e.emp_id) AS unique_employees,
+    COUNT(a.assign_id) AS assignment_count,
+    SUM(a.hours) AS total_hours,
+    AVG(a.hours) AS average_hours
+FROM EMPLOYEE e
+INNER JOIN ASSIGNMENT a
+    ON e.emp_id = a.emp_id
+GROUP BY e.dept_id
+HAVING
+    COUNT(a.assign_id) >= 2
+    AND SUM(a.hours) >= 30
+ORDER BY e.dept_id;
+```
+
+How many rows are returned?
+
+A. 1
+
+B. 2
+
+C. 3
+
+D. 4
+
+(Correct answer: B - 2 rows)
+
+Resultant table:
+
+| dept_id | employee_assignment_rows | unique_employees | assignment_count | total_hours | average_hours |
+| --- | --- | --- | --- | --- | --- |
+| 10 | 3 | 2 | 3 | 60 | 20 |
+| 20 | 3 | 2 | 3 | 40 | 13.3333 |
+
+---
+
+## Q7. Multiple CASE aggregates and HAVING with OR
+
+```sql
+SELECT
+    d.dept_name,
+    COUNT(e.emp_id) AS employee_count,
+    SUM(e.salary) AS total_salary,
+    SUM(
+        CASE
+            WHEN e.status = 'ACTIVE' THEN 1
+            ELSE 0
+        END
+    ) AS active_count,
+    SUM(
+        CASE
+            WHEN e.salary >= 70000 THEN e.salary
+            ELSE 0
+        END
+    ) AS high_salary_total
+FROM DEPARTMENT d
+LEFT JOIN EMPLOYEE e
+    ON d.dept_id = e.dept_id
+GROUP BY d.dept_name
+HAVING
+    COUNT(e.emp_id) = 0
+    OR SUM(e.salary) >= 100000
+ORDER BY d.dept_name;
+```
+
+How many rows are returned?
+
+A. 3
+
+B. 4
+
+C. 5
+
+D. 6
+
+(Correct answer: B - 4 rows)
+
+Resultant table:
+
+| dept_name | employee_count | total_salary | active_count | high_salary_total |
+| --- | --- | --- | --- | --- |
+| IT | 2 | 170000 | 2 | 170000 |
+| Legal | 0 | NULL | 0 | 0 |
+| Operations | 0 | NULL | 0 | 0 |
+| Sales | 2 | 105000 | 2 | 60000 |
+
+---
+
+## Phase 1 - Answer key
+
+| Question | Answer | Rows |
+| --- | --- | --- |
+| Q1 | B | 5 |
+| Q2 | B | 4 |
+| Q3 | B | 5 |
+| Q4 | B | 2 |
+| Q5 | A | 3 |
+| Q6 | B | 2 |
+| Q7 | B | 4 |
+
+**Phase 2** will cover the remaining 8 questions: advanced multi-table aggregation, `HAVING` with nested conditions, NULL-sensitive aggregates, grouping by expressions, duplicate multiplication, and complex conditional sums.
+
+### ChatGPT
+
+# Advanced SQL - GROUP BY & Aggregate Functions
+
+## Phase 2 - Questions 8 to 15
+
+Same `EMPLOYEE`, `DEPARTMENT`, and `ASSIGNMENT` tables.
+
+This phase uses full output-based MCQs. Each question has four possible resultant tables. Select the exact correct output (A, B, C or D), not just the number of rows.
+
+## Q8. GROUP BY with JOIN, COUNT DISTINCT and conditional SUM
+
+```sql
+SELECT
+    d.dept_name,
+    COUNT(DISTINCT e.emp_id) AS employees,
+    COUNT(a.assign_id) AS assignments,
+    SUM(a.hours) AS total_hours,
+    SUM(
+        CASE
+            WHEN a.billable = 'Y' THEN a.hours
+            ELSE 0
+        END
+    ) AS billable_hours
+FROM DEPARTMENT d
+INNER JOIN EMPLOYEE e
+    ON d.dept_id = e.dept_id
+INNER JOIN ASSIGNMENT a
+    ON e.emp_id = a.emp_id
+GROUP BY d.dept_name
+HAVING COUNT(a.assign_id) >= 2
+ORDER BY d.dept_name;
+```
+
+**Option A**
+
+| dept_name | employees | assignments | total_hours | billable_hours |
+| --- | --- | --- | --- | --- |
+| IT | 2 | 3 | 40 | 25 |
+| Sales | 2 | 3 | 60 | 50 |
+
+**Option B**
+
+| dept_name | employees | assignments | total_hours | billable_hours |
+| --- | --- | --- | --- | --- |
+| IT | 2 | 3 | 40 | 40 |
+| Sales | 2 | 3 | 60 | 60 |
+
+**Option C**
+
+| dept_name | employees | assignments | total_hours | billable_hours |
+| --- | --- | --- | --- | --- |
+| IT | 3 | 3 | 40 | 25 |
+| Sales | 3 | 3 | 60 | 50 |
+
+**Option D**
+
+| dept_name | employees | assignments | total_hours | billable_hours |
+| --- | --- | --- | --- | --- |
+| HR | 1 | 1 | 40 | 40 |
+| IT | 2 | 3 | 40 | 25 |
+| Sales | 2 | 3 | 60 | 50 |
+
+(Correct answer: A)
+
+---
+
+## Q9. GROUP BY with WHERE OR, HAVING AND
+
+```sql
+SELECT
+    dept_id,
+    COUNT(*) AS employee_count,
+    SUM(salary) AS total_salary,
+    MIN(salary) AS minimum_salary,
+    MAX(salary) AS maximum_salary
+FROM EMPLOYEE
+WHERE
+    (status = 'ACTIVE' AND salary >= 60000)
+    OR status = 'INACTIVE'
+GROUP BY dept_id
+HAVING
+    COUNT(*) >= 1
+    AND (
+        SUM(salary) >= 100000
+        OR MAX(salary) >= 80000
+    )
+ORDER BY dept_id;
+```
+
+**Option A**
+
+| dept_id | employee_count | total_salary | minimum_salary | maximum_salary |
+| --- | --- | --- | --- | --- |
+| 20 | 2 | 170000 | 80000 | 90000 |
+| 30 | 1 | 50000 | 50000 | 50000 |
+
+**Option B**
+
+| dept_id | employee_count | total_salary | minimum_salary | maximum_salary |
+| --- | --- | --- | --- | --- |
+| NULL | 1 | 70000 | 70000 | 70000 |
+| 20 | 2 | 170000 | 80000 | 90000 |
+| 30 | 1 | 50000 | 50000 | 50000 |
+
+**Option C**
+
+| dept_id | employee_count | total_salary | minimum_salary | maximum_salary |
+| --- | --- | --- | --- | --- |
+| 10 | 1 | 60000 | 60000 | 60000 |
+| 20 | 2 | 170000 | 80000 | 90000 |
+| 30 | 1 | 50000 | 50000 | 50000 |
+
+**Option D**
+
+| dept_id | employee_count | total_salary | minimum_salary | maximum_salary |
+| --- | --- | --- | --- | --- |
+| 20 | 2 | 170000 | 80000 | 90000 |
+
+(Correct answer: A)
+
+---
+
+## Q10. LEFT JOIN with COUNT, SUM and NULL-sensitive aggregation
+
+```sql
+SELECT
+    d.dept_name,
+    COUNT(*) AS joined_rows,
+    COUNT(e.emp_id) AS employee_count,
+    COUNT(a.assign_id) AS assignment_count,
+    SUM(a.hours) AS total_hours,
+    AVG(a.hours) AS avg_hours
+FROM DEPARTMENT d
+LEFT JOIN EMPLOYEE e
+    ON d.dept_id = e.dept_id
+LEFT JOIN ASSIGNMENT a
+    ON e.emp_id = a.emp_id
+GROUP BY d.dept_name
+HAVING
+    COUNT(a.assign_id) >= 1
+    OR COUNT(e.emp_id) = 0
+ORDER BY d.dept_name;
+```
+
+**Option A**
+
+| dept_name | joined_rows | employee_count | assignment_count | total_hours | avg_hours |
+| --- | --- | --- | --- | --- | --- |
+| Finance | 1 | 1 | 1 | 20 | 20 |
+| HR | 1 | 1 | 1 | 40 | 40 |
+| IT | 3 | 3 | 3 | 40 | 13.3333 |
+| Legal | 1 | 0 | 0 | NULL | NULL |
+| Operations | 1 | 0 | 0 | NULL | NULL |
+| Sales | 3 | 3 | 3 | 60 | 20 |
+
+**Option B**
+
+| dept_name | joined_rows | employee_count | assignment_count | total_hours | avg_hours |
+| --- | --- | --- | --- | --- | --- |
+| Finance | 1 | 1 | 1 | 20 | 20 |
+| HR | 1 | 1 | 1 | 40 | 40 |
+| IT | 3 | 2 | 3 | 40 | 13.3333 |
+| Legal | 1 | 0 | 0 | 0 | 0 |
+| Operations | 1 | 0 | 0 | 0 | 0 |
+| Sales | 3 | 2 | 3 | 60 | 20 |
+
+**Option C**
+
+| dept_name | joined_rows | employee_count | assignment_count | total_hours | avg_hours |
+| --- | --- | --- | --- | --- | --- |
+| Finance | 1 | 1 | 1 | 20 | 20 |
+| HR | 1 | 1 | 1 | 40 | 40 |
+| IT | 3 | 2 | 3 | 40 | 13.3333 |
+| Legal | 1 | 0 | 0 | NULL | NULL |
+| Operations | 1 | 0 | 0 | NULL | NULL |
+| Sales | 3 | 2 | 3 | 60 | 20 |
+
+**Option D**
+
+| dept_name | joined_rows | employee_count | assignment_count | total_hours | avg_hours |
+| --- | --- | --- | --- | --- | --- |
+| Finance | 1 | 1 | 1 | 20 | 20 |
+| HR | 1 | 1 | 1 | 40 | 40 |
+| IT | 2 | 2 | 2 | 40 | 20 |
+| Legal | 0 | 0 | 0 | NULL | NULL |
+| Operations | 0 | 0 | 0 | NULL | NULL |
+| Sales | 2 | 2 | 2 | 60 | 30 |
+
+(Correct answer: C)
+
+---
+
+## Q11. GROUP BY with multiple CASE expressions and HAVING
+
+```sql
+SELECT
+    project_name,
+    COUNT(*) AS assignment_count,
+    SUM(hours) AS total_hours,
+    SUM(CASE WHEN billable = 'Y' THEN hours ELSE 0 END)
+        AS billable_hours,
+    SUM(CASE WHEN billable = 'N' THEN hours ELSE 0 END)
+        AS non_billable_hours,
+    AVG(hours) AS average_hours
+FROM ASSIGNMENT
+WHERE hours >= 10
+GROUP BY project_name
+HAVING
+    SUM(hours) >= 30
+    AND COUNT(*) >= 2
+ORDER BY project_name;
+```
+
+**Option A**
+
+| project_name | assignment_count | total_hours | billable_hours | non_billable_hours | average_hours |
+| --- | --- | --- | --- | --- | --- |
+| Atlas | 3 | 90 | 90 | 0 | 30 |
+| Nova | 2 | 35 | 25 | 10 | 17.5 |
+
+**Option B**
+
+| project_name | assignment_count | total_hours | billable_hours | non_billable_hours | average_hours |
+| --- | --- | --- | --- | --- | --- |
+| Atlas | 3 | 90 | 90 | 0 | 30 |
+| Nova | 2 | 35 | 25 | 10 | 17.5 |
+| Orion | 2 | 35 | 20 | 15 | 17.5 |
+
+**Option C**
+
+| project_name | assignment_count | total_hours | billable_hours | non_billable_hours | average_hours |
+| --- | --- | --- | --- | --- | --- |
+| Atlas | 4 | 90 | 90 | 0 | 22.5 |
+| Nova | 2 | 37 | 25 | 12 | 18.5 |
+
+**Option D**
+
+| project_name | assignment_count | total_hours | billable_hours | non_billable_hours | average_hours |
+| --- | --- | --- | --- | --- | --- |
+| Atlas | 3 | 90 | 90 | 0 | 30 |
+| Nova | 2 | 37 | 25 | 12 | 18.5 |
+
+(Correct answer: B)
+
+---
+
+## Q12. GROUP BY with expression and CASE-based filtering
+
+```sql
+SELECT
+    CASE
+        WHEN salary >= 80000 THEN 'HIGH'
+        WHEN salary >= 60000 THEN 'MEDIUM'
+        ELSE 'LOW'
+    END AS salary_band,
+    COUNT(*) AS employee_count,
+    SUM(salary) AS total_salary,
+    AVG(salary) AS avg_salary
+FROM EMPLOYEE
+WHERE status = 'ACTIVE'
+GROUP BY
+    CASE
+        WHEN salary >= 80000 THEN 'HIGH'
+        WHEN salary >= 60000 THEN 'MEDIUM'
+        ELSE 'LOW'
+    END
+HAVING COUNT(*) >= 2
+ORDER BY salary_band;
+```
+
+**Option A**
+
+| salary_band | employee_count | total_salary | avg_salary |
+| --- | --- | --- | --- |
+| HIGH | 2 | 170000 | 85000 |
+| MEDIUM | 3 | 195000 | 65000 |
+
+**Option B**
+
+| salary_band | employee_count | total_salary | avg_salary |
+| --- | --- | --- | --- |
+| HIGH | 2 | 170000 | 85000 |
+| MEDIUM | 3 | 195000 | 65000 |
+| LOW | 1 | 45000 | 45000 |
+
+**Option C**
+
+| salary_band | employee_count | total_salary | avg_salary |
+| --- | --- | --- | --- |
+| HIGH | 2 | 170000 | 85000 |
+| MEDIUM | 2 | 130000 | 65000 |
+
+**Option D**
+
+| salary_band | employee_count | total_salary | avg_salary |
+| --- | --- | --- | --- |
+| HIGH | 2 | 170000 | 85000 |
+| MEDIUM | 3 | 195000 | 65000 |
+| LOW | 2 | 95000 | 47500 |
+
+(Correct answer: A)
+
+---
+
+## Q13. GROUP BY with LEFT JOIN and conditional COUNT
+
+```sql
+SELECT
+    d.dept_name,
+    COUNT(e.emp_id) AS total_employees,
+    COUNT(CASE WHEN e.status = 'ACTIVE' THEN 1 END)
+        AS active_employees,
+    COUNT(CASE WHEN e.status = 'INACTIVE' THEN 1 END)
+        AS inactive_employees,
+    SUM(
+        CASE
+            WHEN e.status = 'ACTIVE' THEN e.salary
+            ELSE 0
+        END
+    ) AS active_salary
+FROM DEPARTMENT d
+LEFT JOIN EMPLOYEE e
+    ON d.dept_id = e.dept_id
+GROUP BY d.dept_name
+HAVING
+    COUNT(e.emp_id) >= 1
+    OR COUNT(CASE WHEN e.status = 'ACTIVE' THEN 1 END) = 0
+ORDER BY d.dept_name;
+```
+
+**Option A**
+
+| dept_name | total_employees | active_employees | inactive_employees | active_salary |
+| --- | --- | --- | --- | --- |
+| Finance | 1 | 1 | 0 | 65000 |
+| HR | 1 | 0 | 1 | 0 |
+| IT | 2 | 2 | 0 | 170000 |
+| Legal | 0 | 0 | 0 | 0 |
+| Operations | 0 | 0 | 0 | 0 |
+| Sales | 2 | 2 | 0 | 105000 |
+
+**Option B**
+
+| dept_name | total_employees | active_employees | inactive_employees | active_salary |
+| --- | --- | --- | --- | --- |
+| Finance | 1 | 1 | 0 | 65000 |
+| HR | 1 | 1 | 0 | 50000 |
+| IT | 2 | 2 | 0 | 170000 |
+| Legal | 0 | 0 | 0 | NULL |
+| Operations | 0 | 0 | 0 | NULL |
+| Sales | 2 | 2 | 0 | 105000 |
+
+**Option C**
+
+| dept_name | total_employees | active_employees | inactive_employees | active_salary |
+| --- | --- | --- | --- | --- |
+| Finance | 1 | 1 | 0 | 65000 |
+| HR | 1 | 0 | 1 | 0 |
+| IT | 2 | 2 | 0 | 170000 |
+| Sales | 2 | 2 | 0 | 105000 |
+
+**Option D**
+
+| dept_name | total_employees | active_employees | inactive_employees | active_salary |
+| --- | --- | --- | --- | --- |
+| Finance | 1 | 1 | 0 | 65000 |
+| HR | 1 | 0 | 1 | NULL |
+| IT | 2 | 2 | 0 | 170000 |
+| Legal | 0 | 0 | 0 | NULL |
+| Operations | 0 | 0 | 0 | NULL |
+| Sales | 2 | 2 | 0 | 105000 |
+
+(Correct answer: A)
+
+---
+
+## Q14. GROUP BY with duplicate multiplication and COUNT DISTINCT
+
+```sql
+SELECT
+    d.dept_name,
+    COUNT(e.emp_id) AS employee_assignment_rows,
+    COUNT(DISTINCT e.emp_id) AS unique_employees,
+    COUNT(a.assign_id) AS assignment_count,
+    SUM(e.salary) AS salary_sum,
+    SUM(a.hours) AS hours_sum
+FROM DEPARTMENT d
+INNER JOIN EMPLOYEE e
+    ON d.dept_id = e.dept_id
+INNER JOIN ASSIGNMENT a
+    ON e.emp_id = a.emp_id
+GROUP BY d.dept_name
+HAVING
+    COUNT(DISTINCT e.emp_id) >= 1
+    AND SUM(a.hours) >= 30
+ORDER BY d.dept_name;
+```
+
+**Option A**
+
+| dept_name | employee_assignment_rows | unique_employees | assignment_count | salary_sum | hours_sum |
+| --- | --- | --- | --- | --- | --- |
+| HR | 1 | 1 | 1 | 50000 | 40 |
+| IT | 3 | 2 | 3 | 250000 | 40 |
+| Sales | 3 | 2 | 3 | 165000 | 60 |
+
+**Option B**
+
+| dept_name | employee_assignment_rows | unique_employees | assignment_count | salary_sum | hours_sum |
+| --- | --- | --- | --- | --- | --- |
+| HR | 1 | 1 | 1 | 50000 | 40 |
+| IT | 3 | 2 | 3 | 170000 | 40 |
+| Sales | 3 | 2 | 3 | 105000 | 60 |
+
+**Option C**
+
+| dept_name | employee_assignment_rows | unique_employees | assignment_count | salary_sum | hours_sum |
+| --- | --- | --- | --- | --- | --- |
+| IT | 3 | 3 | 3 | 170000 | 40 |
+| Sales | 3 | 3 | 3 | 105000 | 60 |
+
+**Option D**
+
+| dept_name | employee_assignment_rows | unique_employees | assignment_count | salary_sum | hours_sum |
+| --- | --- | --- | --- | --- | --- |
+| HR | 1 | 1 | 1 | 50000 | 40 |
+| IT | 2 | 2 | 3 | 170000 | 40 |
+| Sales | 2 | 2 | 3 | 105000 | 60 |
+
+(Correct answer: A)
+
+---
+
+## Q15. Advanced GROUP BY with multiple conditional aggregates and HAVING
+
+```sql
+SELECT
+    d.location,
+    COUNT(e.emp_id) AS employees,
+    SUM(e.salary) AS total_salary,
+    SUM(
+        CASE
+            WHEN e.status = 'ACTIVE'
+                 AND e.salary >= 70000
+            THEN 1
+            ELSE 0
+        END
+    ) AS high_paid_active,
+    SUM(
+        CASE
+            WHEN e.status = 'INACTIVE'
+            THEN e.salary
+            ELSE 0
+        END
+    ) AS inactive_salary
+FROM DEPARTMENT d
+LEFT JOIN EMPLOYEE e
+    ON d.dept_id = e.dept_id
+GROUP BY d.location
+HAVING
+    SUM(e.salary) >= 100000
+    OR COUNT(e.emp_id) = 0
+ORDER BY d.location;
+```
+
+**Option A**
+
+| location | employees | total_salary | high_paid_active | inactive_salary |
+| --- | --- | --- | --- | --- |
+| Bengaluru | 2 | 170000 | 2 | 0 |
+| Chennai | 3 | 155000 | 0 | 50000 |
+| Delhi | 0 | NULL | 0 | 0 |
+| Pune | 0 | NULL | 0 | 0 |
+
+**Option B**
+
+| location | employees | total_salary | high_paid_active | inactive_salary |
+| --- | --- | --- | --- | --- |
+| Bengaluru | 2 | 170000 | 2 | 0 |
+| Chennai | 3 | 155000 | 0 | 50000 |
+| Mumbai | 1 | 65000 | 0 | 0 |
+| Delhi | 0 | 0 | 0 | 0 |
+| Pune | 0 | 0 | 0 | 0 |
+
+**Option C**
+
+| location | employees | total_salary | high_paid_active | inactive_salary |
+| --- | --- | --- | --- | --- |
+| Bengaluru | 2 | 170000 | 1 | 0 |
+| Chennai | 3 | 155000 | 0 | 50000 |
+| Delhi | 0 | NULL | 0 | NULL |
+| Pune | 0 | NULL | 0 | NULL |
+
+**Option D**
+
+| location | employees | total_salary | high_paid_active | inactive_salary |
+| --- | --- | --- | --- | --- |
+| Bengaluru | 2 | 170000 | 2 | 0 |
+| Chennai | 3 | 155000 | 0 | 50000 |
+| Delhi | 0 | NULL | 0 | 0 |
+| Pune | 0 | NULL | 0 | 0 |
+| Mumbai | 1 | 65000 | 0 | 0 |
+
+(Correct answer: A)
+
+---
+
+## Phase 2 - Answer key
+
+| Question | Correct option |
+| --- | --- |
+| Q8 | A |
+| Q9 | A |
+| Q10 | C |
+| Q11 | B |
+| Q12 | A |
+| Q13 | A |
+| Q14 | A |
+| Q15 | A |
+
+**Practice reminder:** Pay particular attention to `COUNT(*)` versus `COUNT(column)`, aggregate duplication after JOINs, `CASE` inside aggregates, and the fact that `WHERE` filters rows before grouping while `HAVING` filters groups after aggregation.
+
+### ChatGPT
+
+# Advanced SQL Subqueries - 15 Output-Based MCQs
+
+Using the same dataset from the previous practice:
+
+- `EMPLOYEE`
+- `DEPARTMENT`
+- `ASSIGNMENT`
+
+**Practice structure:**
+
+- Phase 1: 8 Independent (Non-Correlated) Subqueries
+- Phase 2: 7 Correlated Subqueries
+
+Each question has four possible resultant tables. Choose the exact correct output: A, B, C or D.
+
+# Phase 1 - Independent Subqueries (8 Questions)
+
+## Q1. Scalar subquery with AVG
+
+```sql
+SELECT emp_id, emp_name, salary
+FROM EMPLOYEE
+WHERE salary > (
+    SELECT AVG(salary)
+    FROM EMPLOYEE
+)
+ORDER BY emp_id;
+```
+
+**Option A**
+
+| emp_id | emp_name | salary |
+| --- | --- | --- |
+| 3 | Charu | 80000 |
+| 4 | Deepa | 90000 |
+| 6 | Farah | 70000 |
+
+**Option B**
+
+| emp_id | emp_name | salary |
+| --- | --- | --- |
+| 1 | Anu | 60000 |
+| 3 | Charu | 80000 |
+| 4 | Deepa | 90000 |
+| 6 | Farah | 70000 |
+
+**Option C**
+
+| emp_id | emp_name | salary |
+| --- | --- | --- |
+| 3 | Charu | 80000 |
+| 4 | Deepa | 90000 |
+| 6 | Farah | 70000 |
+| 7 | Gopal | 65000 |
+
+**Option D**
+
+| emp_id | emp_name | salary |
+| --- | --- | --- |
+| 4 | Deepa | 90000 |
+| 6 | Farah | 70000 |
+
+(Correct answer: A)
+
+---
+
+## Q2. IN with a subquery returning multiple values
+
+```sql
+SELECT emp_id, emp_name, dept_id
+FROM EMPLOYEE
+WHERE dept_id IN (
+    SELECT dept_id
+    FROM DEPARTMENT
+    WHERE location = 'Chennai'
+)
+ORDER BY emp_id;
+```
+
+**Option A**
+
+| emp_id | emp_name | dept_id |
+| --- | --- | --- |
+| 1 | Anu | 10 |
+| 2 | Bala | 10 |
+| 5 | Eshan | 30 |
+
+**Option B**
+
+| emp_id | emp_name | dept_id |
+| --- | --- | --- |
+| 1 | Anu | 10 |
+| 2 | Bala | 10 |
+| 5 | Eshan | 30 |
+| 6 | Farah | NULL |
+
+**Option C**
+
+| emp_id | emp_name | dept_id |
+| --- | --- | --- |
+| 1 | Anu | 10 |
+| 2 | Bala | 10 |
+| 3 | Charu | 20 |
+| 5 | Eshan | 30 |
+
+**Option D**
+
+| emp_id | emp_name | dept_id |
+| --- | --- | --- |
+| 1 | Anu | 10 |
+| 5 | Eshan | 30 |
+
+(Correct answer: A)
+
+---
+
+## Q3. NOT IN with subquery
+
+```sql
+SELECT emp_id, emp_name
+FROM EMPLOYEE
+WHERE emp_id NOT IN (
+    SELECT emp_id
+    FROM ASSIGNMENT
+)
+ORDER BY emp_id;
+```
+
+**Option A**
+
+| emp_id | emp_name |
+| --- | --- |
+| 6 | Farah |
+
+**Option B**
+
+| emp_id | emp_name |
+| --- | --- |
+| 4 | Deepa |
+| 6 | Farah |
+
+**Option C**
+
+| emp_id | emp_name |
+| --- | --- |
+| 6 | Farah |
+| 7 | Gopal |
+
+**Option D**
+
+| emp_id | emp_name |
+| --- | --- |
+| 5 | Eshan |
+| 6 | Farah |
+
+(Correct answer: A)
+
+---
+
+## Q4. Scalar subquery with MAX
+
+```sql
+SELECT emp_id, emp_name, salary
+FROM EMPLOYEE
+WHERE salary = (
+    SELECT MAX(salary)
+    FROM EMPLOYEE
+)
+ORDER BY emp_id;
+```
+
+**Option A**
+
+| emp_id | emp_name | salary |
+| --- | --- | --- |
+| 3 | Charu | 80000 |
+| 4 | Deepa | 90000 |
+
+**Option B**
+
+| emp_id | emp_name | salary |
+| --- | --- | --- |
+| 4 | Deepa | 90000 |
+
+**Option C**
+
+| emp_id | emp_name | salary |
+| --- | --- | --- |
+| 6 | Farah | 70000 |
+
+**Option D**
+
+| emp_id | emp_name | salary |
+| --- | --- | --- |
+| 1 | Anu | 60000 |
+| 4 | Deepa | 90000 |
+
+(Correct answer: B)
+
+---
+
+## Q5. ALL operator with a subquery
+
+```sql
+SELECT emp_id, emp_name, salary
+FROM EMPLOYEE
+WHERE salary > ALL (
+    SELECT salary
+    FROM EMPLOYEE
+    WHERE dept_id = 10
+)
+ORDER BY emp_id;
+```
+
+**Option A**
+
+| emp_id | emp_name | salary |
+| --- | --- | --- |
+| 3 | Charu | 80000 |
+| 4 | Deepa | 90000 |
+| 6 | Farah | 70000 |
+| 7 | Gopal | 65000 |
+
+**Option B**
+
+| emp_id | emp_name | salary |
+| --- | --- | --- |
+| 3 | Charu | 80000 |
+| 4 | Deepa | 90000 |
+
+**Option C**
+
+| emp_id | emp_name | salary |
+| --- | --- | --- |
+| 1 | Anu | 60000 |
+| 3 | Charu | 80000 |
+| 4 | Deepa | 90000 |
+| 6 | Farah | 70000 |
+| 7 | Gopal | 65000 |
+
+**Option D**
+
+| emp_id | emp_name | salary |
+| --- | --- | --- |
+| 4 | Deepa | 90000 |
+| 6 | Farah | 70000 |
+| 7 | Gopal | 65000 |
+
+(Correct answer: A)
+
+---
+
+## Q6. Subquery with GROUP BY and HAVING
+
+```sql
+SELECT
+    project_name,
+    assign_id,
+    hours
+FROM ASSIGNMENT
+WHERE project_name IN (
+    SELECT project_name
+    FROM ASSIGNMENT
+    GROUP BY project_name
+    HAVING SUM(hours) >= 40
+)
+ORDER BY project_name, assign_id;
+```
+
+**Option A**
+
+| project_name | assign_id | hours |
+| --- | --- | --- |
+| Atlas | 201 | 20 |
+| Atlas | 202 | 10 |
+| Atlas | 203 | 30 |
+| Atlas | 206 | 40 |
+| Atlas | 209 | 0 |
+
+**Option B**
+
+| project_name | assign_id | hours |
+| --- | --- | --- |
+| Atlas | 201 | 20 |
+| Atlas | 202 | 10 |
+| Atlas | 203 | 30 |
+| Atlas | 206 | 40 |
+| Atlas | 209 | 0 |
+| Nova | 204 | 25 |
+| Nova | 205 | 15 |
+
+**Option C**
+
+| project_name | assign_id | hours |
+| --- | --- | --- |
+| Atlas | 201 | 20 |
+| Atlas | 203 | 30 |
+| Atlas | 206 | 40 |
+| Nova | 204 | 25 |
+| Orion | 207 | 20 |
+
+**Option D**
+
+| project_name | assign_id | hours |
+| --- | --- | --- |
+| Atlas | 201 | 20 |
+| Atlas | 203 | 30 |
+| Atlas | 206 | 40 |
+| Atlas | 209 | 0 |
+
+(Correct answer: A)
+
+---
+
+## Q7. Subquery with DISTINCT and IN
+
+```sql
+SELECT emp_id, emp_name, manager_id
+FROM EMPLOYEE
+WHERE manager_id IN (
+    SELECT emp_id
+    FROM EMPLOYEE
+    WHERE salary >= 80000
+)
+ORDER BY emp_id;
+```
+
+**Option A**
+
+| emp_id | emp_name | manager_id |
+| --- | --- | --- |
+| 3 | Charu | 4 |
+| 6 | Farah | 3 |
+| 7 | Gopal | 4 |
+
+**Option B**
+
+| emp_id | emp_name | manager_id |
+| --- | --- | --- |
+| 3 | Charu | 4 |
+| 6 | Farah | 3 |
+
+**Option C**
+
+| emp_id | emp_name | manager_id |
+| --- | --- | --- |
+| 4 | Deepa | NULL |
+| 3 | Charu | 4 |
+| 6 | Farah | 3 |
+| 7 | Gopal | 4 |
+
+**Option D**
+
+| emp_id | emp_name | manager_id |
+| --- | --- | --- |
+| 2 | Bala | 1 |
+| 3 | Charu | 4 |
+| 6 | Farah | 3 |
+| 7 | Gopal | 4 |
+
+(Correct answer: A)
+
+---
+
+## Q8. Subquery with aggregate over grouped data
+
+```sql
+SELECT
+    dept_id,
+    COUNT(*) AS employee_count
+FROM EMPLOYEE
+GROUP BY dept_id
+HAVING COUNT(*) > (
+    SELECT AVG(dept_count)
+    FROM (
+        SELECT COUNT(*) AS dept_count
+        FROM EMPLOYEE
+        GROUP BY dept_id
+    ) x
+)
+ORDER BY dept_id;
+```
+
+**Option A**
+
+| dept_id | employee_count |
+| --- | --- |
+| 10 | 2 |
+| 20 | 2 |
+
+**Option B**
+
+| dept_id | employee_count |
+| --- | --- |
+| 10 | 2 |
+| 20 | 2 |
+| 30 | 1 |
+
+**Option C**
+
+| dept_id | employee_count |
+| --- | --- |
+| NULL | 1 |
+| 10 | 2 |
+| 20 | 2 |
+| 30 | 1 |
+| 40 | 1 |
+
+**Option D**
+
+| dept_id | employee_count |
+| --- | --- |
+| 10 | 2 |
+| 20 | 2 |
+| 40 | 1 |
+
+(Correct answer: A)
+
+---
+
+# Phase 2 - Correlated Subqueries (7 Questions)
+
+## Q9. Correlated scalar subquery - salary greater than department average
+
+```sql
+SELECT
+    e.emp_id,
+    e.emp_name,
+    e.dept_id,
+    e.salary
+FROM EMPLOYEE e
+WHERE e.salary > (
+    SELECT AVG(e2.salary)
+    FROM EMPLOYEE e2
+    WHERE e2.dept_id = e.dept_id
+)
+ORDER BY e.emp_id;
+```
+
+**Option A**
+
+| emp_id | emp_name | dept_id | salary |
+| --- | --- | --- | --- |
+| 1 | Anu | 10 | 60000 |
+| 4 | Deepa | 20 | 90000 |
+
+**Option B**
+
+| emp_id | emp_name | dept_id | salary |
+| --- | --- | --- | --- |
+| 1 | Anu | 10 | 60000 |
+| 3 | Charu | 20 | 80000 |
+| 4 | Deepa | 20 | 90000 |
+
+**Option C**
+
+| emp_id | emp_name | dept_id | salary |
+| --- | --- | --- | --- |
+| 4 | Deepa | 20 | 90000 |
+| 5 | Eshan | 30 | 50000 |
+
+**Option D**
+
+| emp_id | emp_name | dept_id | salary |
+| --- | --- | --- | --- |
+| 1 | Anu | 10 | 60000 |
+| 4 | Deepa | 20 | 90000 |
+| 6 | Farah | NULL | 70000 |
+
+(Correct answer: A)
+
+---
+
+## Q10. Correlated EXISTS with multiple conditions
+
+```sql
+SELECT
+    e.emp_id,
+    e.emp_name,
+    e.status
+FROM EMPLOYEE e
+WHERE EXISTS (
+    SELECT 1
+    FROM ASSIGNMENT a
+    WHERE a.emp_id = e.emp_id
+      AND a.billable = 'Y'
+      AND a.hours >= 20
+)
+ORDER BY e.emp_id;
+```
+
+**Option A**
+
+| emp_id | emp_name | status |
+| --- | --- | --- |
+| 1 | Anu | ACTIVE |
+| 2 | Bala | ACTIVE |
+| 3 | Charu | ACTIVE |
+| 5 | Eshan | INACTIVE |
+| 7 | Gopal | ACTIVE |
+
+**Option B**
+
+| emp_id | emp_name | status |
+| --- | --- | --- |
+| 1 | Anu | ACTIVE |
+| 2 | Bala | ACTIVE |
+| 3 | Charu | ACTIVE |
+| 7 | Gopal | ACTIVE |
+
+**Option C**
+
+| emp_id | emp_name | status |
+| --- | --- | --- |
+| 1 | Anu | ACTIVE |
+| 2 | Bala | ACTIVE |
+| 3 | Charu | ACTIVE |
+| 4 | Deepa | ACTIVE |
+| 5 | Eshan | INACTIVE |
+| 7 | Gopal | ACTIVE |
+
+**Option D**
+
+| emp_id | emp_name | status |
+| --- | --- | --- |
+| 1 | Anu | ACTIVE |
+| 2 | Bala | ACTIVE |
+| 3 | Charu | ACTIVE |
+| 5 | Eshan | INACTIVE |
+| 6 | Farah | ACTIVE |
+| 7 | Gopal | ACTIVE |
+
+(Correct answer: A)
+
+---
+
+## Q11. Correlated NOT EXISTS
+
+```sql
+SELECT
+    e.emp_id,
+    e.emp_name
+FROM EMPLOYEE e
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM ASSIGNMENT a
+    WHERE a.emp_id = e.emp_id
+)
+ORDER BY e.emp_id;
+```
+
+**Option A**
+
+| emp_id | emp_name |
+| --- | --- |
+| 6 | Farah |
+
+**Option B**
+
+| emp_id | emp_name |
+| --- | --- |
+| 4 | Deepa |
+| 6 | Farah |
+
+**Option C**
+
+| emp_id | emp_name |
+| --- | --- |
+| 5 | Eshan |
+| 6 | Farah |
+
+**Option D**
+
+| emp_id | emp_name |
+| --- | --- |
+| 6 | Farah |
+| 7 | Gopal |
+
+(Correct answer: A)
+
+---
+
+## Q12. Correlated EXISTS with department minimum salary
+
+```sql
+SELECT
+    d.dept_id,
+    d.dept_name,
+    d.min_salary
+FROM DEPARTMENT d
+WHERE EXISTS (
+    SELECT 1
+    FROM EMPLOYEE e
+    WHERE e.dept_id = d.dept_id
+      AND e.salary > d.min_salary
+)
+ORDER BY d.dept_id;
+```
+
+**Option A**
+
+| dept_id | dept_name | min_salary |
+| --- | --- | --- |
+| 10 | Sales | 50000 |
+| 20 | IT | 75000 |
+| 30 | HR | 45000 |
+| 40 | Finance | 60000 |
+
+**Option B**
+
+| dept_id | dept_name | min_salary |
+| --- | --- | --- |
+| 10 | Sales | 50000 |
+| 20 | IT | 75000 |
+| 40 | Finance | 60000 |
+
+**Option C**
+
+| dept_id | dept_name | min_salary |
+| --- | --- | --- |
+| 10 | Sales | 50000 |
+| 20 | IT | 75000 |
+| 30 | HR | 45000 |
+| 40 | Finance | 60000 |
+| 50 | Operations | 55000 |
+
+**Option D**
+
+| dept_id | dept_name | min_salary |
+| --- | --- | --- |
+| 20 | IT | 75000 |
+| 30 | HR | 45000 |
+| 40 | Finance | 60000 |
+
+(Correct answer: A)
+
+---
+
+## Q13. Correlated subquery with GROUP BY and HAVING
+
+```sql
+SELECT
+    a.assign_id,
+    a.emp_id,
+    a.project_name,
+    a.hours
+FROM ASSIGNMENT a
+WHERE a.hours > (
+    SELECT AVG(a2.hours)
+    FROM ASSIGNMENT a2
+    WHERE a2.project_name = a.project_name
+)
+ORDER BY a.assign_id;
+```
+
+**Option A**
+
+| assign_id | emp_id | project_name | hours |
+| --- | --- | --- | --- |
+| 203 | 2 | Atlas | 30 |
+| 204 | 3 | Nova | 25 |
+| 206 | 5 | Atlas | 40 |
+| 207 | 7 | Orion | 20 |
+
+**Option B**
+
+| assign_id | emp_id | project_name | hours |
+| --- | --- | --- | --- |
+| 201 | 1 | Atlas | 20 |
+| 203 | 2 | Atlas | 30 |
+| 204 | 3 | Nova | 25 |
+| 206 | 5 | Atlas | 40 |
+| 207 | 7 | Orion | 20 |
+
+**Option C**
+
+| assign_id | emp_id | project_name | hours |
+| --- | --- | --- | --- |
+| 203 | 2 | Atlas | 30 |
+| 206 | 5 | Atlas | 40 |
+| 207 | 7 | Orion | 20 |
+
+**Option D**
+
+| assign_id | emp_id | project_name | hours |
+| --- | --- | --- | --- |
+| 203 | 2 | Atlas | 30 |
+| 204 | 3 | Nova | 25 |
+| 206 | 5 | Atlas | 40 |
+
+(Correct answer: A)
+
+---
+
+## Q14. Correlated subquery with MAX - highest salary in each department
+
+```sql
+SELECT
+    e.emp_id,
+    e.emp_name,
+    e.dept_id,
+    e.salary
+FROM EMPLOYEE e
+WHERE e.salary = (
+    SELECT MAX(e2.salary)
+    FROM EMPLOYEE e2
+    WHERE e2.dept_id = e.dept_id
+)
+ORDER BY e.emp_id;
+```
+
+**Option A**
+
+| emp_id | emp_name | dept_id | salary |
+| --- | --- | --- | --- |
+| 1 | Anu | 10 | 60000 |
+| 4 | Deepa | 20 | 90000 |
+| 5 | Eshan | 30 | 50000 |
+| 7 | Gopal | 40 | 65000 |
+
+**Option B**
+
+| emp_id | emp_name | dept_id | salary |
+| --- | --- | --- | --- |
+| 1 | Anu | 10 | 60000 |
+| 3 | Charu | 20 | 80000 |
+| 4 | Deepa | 20 | 90000 |
+| 5 | Eshan | 30 | 50000 |
+| 7 | Gopal | 40 | 65000 |
+
+**Option C**
+
+| emp_id | emp_name | dept_id | salary |
+| --- | --- | --- | --- |
+| 4 | Deepa | 20 | 90000 |
+| 5 | Eshan | 30 | 50000 |
+| 7 | Gopal | 40 | 65000 |
+
+**Option D**
+
+| emp_id | emp_name | dept_id | salary |
+| --- | --- | --- | --- |
+| 1 | Anu | 10 | 60000 |
+| 4 | Deepa | 20 | 90000 |
+| 5 | Eshan | 30 | 50000 |
+| 6 | Farah | NULL | 70000 |
+| 7 | Gopal | 40 | 65000 |
+
+(Correct answer: A)
+
+---
+
+## Q15. Correlated subquery with COUNT and multiple conditions
+
+```sql
+SELECT
+    e.emp_id,
+    e.emp_name,
+    e.dept_id
+FROM EMPLOYEE e
+WHERE (
+    SELECT COUNT(*)
+    FROM ASSIGNMENT a
+    WHERE a.emp_id = e.emp_id
+      AND a.hours >= 10
+) >= 2
+AND e.status = 'ACTIVE'
+ORDER BY e.emp_id;
+```
+
+**Option A**
+
+| emp_id | emp_name | dept_id |
+| --- | --- | --- |
+| 1 | Anu | 10 |
+| 3 | Charu | 20 |
+
+**Option B**
+
+| emp_id | emp_name | dept_id |
+| --- | --- | --- |
+| 1 | Anu | 10 |
+| 3 | Charu | 20 |
+| 5 | Eshan | 30 |
+
+**Option C**
+
+| emp_id | emp_name | dept_id |
+| --- | --- | --- |
+| 1 | Anu | 10 |
+| 2 | Bala | 10 |
+| 3 | Charu | 20 |
+
+**Option D**
+
+| emp_id | emp_name | dept_id |
+| --- | --- | --- |
+| 1 | Anu | 10 |
+| 3 | Charu | 20 |
+| 4 | Deepa | 20 |
+
+(Correct answer: A)
+
+---
+
+# Final Answer Key
+
+| Question | Type | Correct option |
+| --- | --- | --- |
+| Q1 | Independent - AVG | A |
+| Q2 | Independent - IN | A |
+| Q3 | Independent - NOT IN | A |
+| Q4 | Independent - MAX | B |
+| Q5 | Independent - ALL | A |
+| Q6 | Independent - GROUP BY/HAVING | A |
+| Q7 | Independent - IN | A |
+| Q8 | Independent - Nested aggregate | A |
+| Q9 | Correlated - AVG | A |
+| Q10 | Correlated - EXISTS | A |
+| Q11 | Correlated - NOT EXISTS | A |
+| Q12 | Correlated - EXISTS | A |
+| Q13 | Correlated - AVG by project | A |
+| Q14 | Correlated - MAX by department | A |
+| Q15 | Correlated - COUNT | A |
+
+### ChatGPT
+
+# Advanced SQL Practice - Set Operations (10 MCQs)
+
+Using the same `EMPLOYEE`, `DEPARTMENT`, and `ASSIGNMENT` tables.
+
+Topics covered:
+
+1. `UNION`
+2. `UNION ALL`
+3. `INTERSECT`
+4. `EXCEPT` / `MINUS`
+5. Duplicate elimination
+6. NULL handling
+7. Set operations with WHERE
+8. Set operations with aggregate subqueries
+9. Multiple set operations and precedence
+10. Set operations with different source tables
+
+**HSQLDB note:** Use `EXCEPT` for set difference. `MINUS` is supported in some Oracle-style SQL environments, but `EXCEPT` is the standard syntax used here.
+
+---
+
+## Q1. UNION versus UNION ALL with duplicate values
+
+```sql
+SELECT dept_id
+FROM EMPLOYEE
+WHERE status = 'ACTIVE'
+
+UNION
+
+SELECT dept_id
+FROM EMPLOYEE
+WHERE salary >= 70000
+
+ORDER BY dept_id;
+```
+
+Which is the correct output?
+
+**Option A**
+
+| dept_id |
+| --- |
+| NULL |
+| 10 |
+| 20 |
+| 40 |
+
+**Option B**
+
+| dept_id |
+| --- |
+| NULL |
+| NULL |
+| 10 |
+| 10 |
+| 20 |
+| 20 |
+| 40 |
+
+**Option C**
+
+| dept_id |
+| --- |
+| 10 |
+| 20 |
+| 40 |
+
+**Option D**
+
+| dept_id |
+| --- |
+| NULL |
+| 10 |
+| 10 |
+| 20 |
+| 20 |
+| 40 |
+
+(Correct answer: A)
+
+---
+
+## Q2. UNION ALL with overlapping records
+
+```sql
+SELECT emp_id, emp_name
+FROM EMPLOYEE
+WHERE salary >= 70000
+
+UNION ALL
+
+SELECT emp_id, emp_name
+FROM EMPLOYEE
+WHERE dept_id = 20
+
+ORDER BY emp_id;
+```
+
+Which is the correct output?
+
+**Option A**
+
+| emp_id | emp_name |
+| --- | --- |
+| 3 | Charu |
+| 4 | Deepa |
+| 6 | Farah |
+| 3 | Charu |
+| 4 | Deepa |
+
+**Option B**
+
+| emp_id | emp_name |
+| --- | --- |
+| 3 | Charu |
+| 4 | Deepa |
+| 6 | Farah |
+
+**Option C**
+
+| emp_id | emp_name |
+| --- | --- |
+| 3 | Charu |
+| 4 | Deepa |
+| 3 | Charu |
+| 4 | Deepa |
+
+**Option D**
+
+| emp_id | emp_name |
+| --- | --- |
+| 1 | Anu |
+| 3 | Charu |
+| 4 | Deepa |
+| 6 | Farah |
+
+(Correct answer: A)
+
+---
+
+## Q3. INTERSECT with different WHERE conditions
+
+```sql
+SELECT emp_id
+FROM EMPLOYEE
+WHERE salary >= 60000
+
+INTERSECT
+
+SELECT emp_id
+FROM EMPLOYEE
+WHERE status = 'ACTIVE'
+
+ORDER BY emp_id;
+```
+
+Which is the correct output?
+
+**Option A**
+
+| emp_id |
+| --- |
+| 1 |
+| 3 |
+| 4 |
+| 6 |
+| 7 |
+
+**Option B**
+
+| emp_id |
+| --- |
+| 1 |
+| 3 |
+| 4 |
+| 6 |
+
+**Option C**
+
+| emp_id |
+| --- |
+| 1 |
+| 2 |
+| 3 |
+| 4 |
+| 6 |
+| 7 |
+
+**Option D**
+
+| emp_id |
+| --- |
+| 3 |
+| 4 |
+| 6 |
+| 7 |
+
+(Correct answer: A)
+
+---
+
+## Q4. EXCEPT with NULL values
+
+```sql
+SELECT dept_id
+FROM EMPLOYEE
+
+EXCEPT
+
+SELECT dept_id
+FROM DEPARTMENT
+WHERE location = 'Chennai'
+
+ORDER BY dept_id;
+```
+
+Which is the correct output?
+
+**Option A**
+
+| dept_id |
+| --- |
+| NULL |
+| 20 |
+| 40 |
+
+**Option B**
+
+| dept_id |
+| --- |
+| 20 |
+| 40 |
+| 50 |
+| 60 |
+
+**Option C**
+
+| dept_id |
+| --- |
+| 20 |
+| 40 |
+
+**Option D**
+
+| dept_id |
+| --- |
+| NULL |
+| 20 |
+| 40 |
+| 50 |
+| 60 |
+
+(Correct answer: A)
+
+---
+
+## Q5. UNION with aggregate queries
+
+```sql
+SELECT
+    dept_id,
+    COUNT(*) AS employee_count
+FROM EMPLOYEE
+GROUP BY dept_id
+HAVING COUNT(*) >= 2
+
+UNION
+
+SELECT
+    dept_id,
+    COUNT(*) AS employee_count
+FROM EMPLOYEE
+GROUP BY dept_id
+HAVING COUNT(*) = 1
+
+ORDER BY dept_id;
+```
+
+Which is the correct output?
+
+**Option A**
+
+| dept_id | employee_count |
+| --- | --- |
+| NULL | 1 |
+| 10 | 2 |
+| 20 | 2 |
+| 30 | 1 |
+| 40 | 1 |
+
+**Option B**
+
+| dept_id | employee_count |
+| --- | --- |
+| 10 | 2 |
+| 20 | 2 |
+
+**Option C**
+
+| dept_id | employee_count |
+| --- | --- |
+| NULL | 1 |
+| 10 | 2 |
+| 20 | 2 |
+
+**Option D**
+
+| dept_id | employee_count |
+| --- | --- |
+| NULL | 1 |
+| 10 | 2 |
+| 20 | 2 |
+| 30 | 1 |
+| 40 | 1 |
+| 50 | 0 |
+| 60 | 0 |
+
+(Correct answer: A)
+
+---
+
+## Q6. INTERSECT between employee IDs and assignment employee IDs
+
+```sql
+SELECT emp_id
+FROM EMPLOYEE
+WHERE status = 'ACTIVE'
+
+INTERSECT
+
+SELECT emp_id
+FROM ASSIGNMENT
+WHERE billable = 'Y'
+
+ORDER BY emp_id;
+```
+
+Which is the correct output?
+
+**Option A**
+
+| emp_id |
+| --- |
+| 1 |
+| 2 |
+| 3 |
+| 7 |
+
+**Option B**
+
+| emp_id |
+| --- |
+| 1 |
+| 2 |
+| 3 |
+| 5 |
+| 7 |
+
+**Option C**
+
+| emp_id |
+| --- |
+| 1 |
+| 2 |
+| 3 |
+| 4 |
+| 5 |
+| 7 |
+
+**Option D**
+
+| emp_id |
+| --- |
+| 1 |
+| 2 |
+| 3 |
+| 7 |
+| 99 |
+
+(Correct answer: A)
+
+---
+
+## Q7. Multiple set operations and parentheses
+
+```sql
+(
+    SELECT emp_id
+    FROM EMPLOYEE
+    WHERE salary >= 70000
+
+    UNION
+
+    SELECT emp_id
+    FROM EMPLOYEE
+    WHERE dept_id = 10
+)
+
+EXCEPT
+
+SELECT emp_id
+FROM EMPLOYEE
+WHERE status = 'INACTIVE'
+
+ORDER BY emp_id;
+```
+
+Which is the correct output?
+
+**Option A**
+
+| emp_id |
+| --- |
+| 1 |
+| 2 |
+| 3 |
+| 4 |
+| 6 |
+
+**Option B**
+
+| emp_id |
+| --- |
+| 1 |
+| 2 |
+| 3 |
+| 4 |
+| 5 |
+| 6 |
+
+**Option C**
+
+| emp_id |
+| --- |
+| 1 |
+| 2 |
+| 3 |
+| 4 |
+
+**Option D**
+
+| emp_id |
+| --- |
+| 3 |
+| 4 |
+| 6 |
+
+(Correct answer: A)
+
+---
+
+## Q8. UNION ALL with different source tables
+
+```sql
+SELECT
+    emp_id AS reference_id,
+    'EMPLOYEE' AS source_type
+FROM EMPLOYEE
+WHERE salary >= 70000
+
+UNION ALL
+
+SELECT
+    emp_id AS reference_id,
+    'ASSIGNMENT' AS source_type
+FROM ASSIGNMENT
+WHERE hours >= 20
+
+ORDER BY reference_id, source_type;
+```
+
+Which is the correct output?
+
+**Option A**
+
+| reference_id | source_type |
+| --- | --- |
+| 1 | EMPLOYEE |
+| 2 | ASSIGNMENT |
+| 2 | EMPLOYEE |
+| 3 | EMPLOYEE |
+| 3 | ASSIGNMENT |
+| 4 | EMPLOYEE |
+| 5 | ASSIGNMENT |
+| 6 | EMPLOYEE |
+| 7 | ASSIGNMENT |
+| 7 | EMPLOYEE |
+
+**Option B**
+
+| reference_id | source_type |
+| --- | --- |
+| 2 | ASSIGNMENT |
+| 3 | ASSIGNMENT |
+| 5 | ASSIGNMENT |
+| 7 | ASSIGNMENT |
+| 3 | EMPLOYEE |
+| 4 | EMPLOYEE |
+| 6 | EMPLOYEE |
+
+**Option C**
+
+| reference_id | source_type |
+| --- | --- |
+| 1 | EMPLOYEE |
+| 2 | ASSIGNMENT |
+| 2 | EMPLOYEE |
+| 3 | EMPLOYEE |
+| 3 | ASSIGNMENT |
+| 4 | EMPLOYEE |
+| 5 | ASSIGNMENT |
+| 6 | EMPLOYEE |
+| 7 | ASSIGNMENT |
+| 7 | EMPLOYEE |
+| 99 | ASSIGNMENT |
+
+**Option D**
+
+| reference_id | source_type |
+| --- | --- |
+| 1 | EMPLOYEE |
+| 2 | ASSIGNMENT |
+| 2 | EMPLOYEE |
+| 3 | EMPLOYEE |
+| 3 | ASSIGNMENT |
+| 4 | EMPLOYEE |
+| 5 | ASSIGNMENT |
+| 6 | EMPLOYEE |
+| 7 | ASSIGNMENT |
+| 7 | EMPLOYEE |
+
+(Correct answer: D)
+
+---
+
+## Q9. EXCEPT with GROUP BY and HAVING
+
+```sql
+SELECT dept_id
+FROM EMPLOYEE
+GROUP BY dept_id
+HAVING COUNT(*) >= 1
+
+EXCEPT
+
+SELECT dept_id
+FROM EMPLOYEE
+WHERE status = 'INACTIVE'
+
+ORDER BY dept_id;
+```
+
+Which is the correct output?
+
+**Option A**
+
+| dept_id |
+| --- |
+| NULL |
+| 10 |
+| 20 |
+| 40 |
+
+**Option B**
+
+| dept_id |
+| --- |
+| NULL |
+| 10 |
+| 20 |
+| 30 |
+| 40 |
+
+**Option C**
+
+| dept_id |
+| --- |
+| 10 |
+| 20 |
+| 40 |
+
+**Option D**
+
+| dept_id |
+| --- |
+| 10 |
+| 20 |
+| 30 |
+| 40 |
+
+(Correct answer: A)
+
+---
+
+## Q10. INTERSECT and EXCEPT combined with parentheses
+
+```sql
+(
+    SELECT emp_id
+    FROM EMPLOYEE
+    WHERE salary >= 60000
+
+    INTERSECT
+
+    SELECT emp_id
+    FROM EMPLOYEE
+    WHERE status = 'ACTIVE'
+)
+
+EXCEPT
+
+SELECT emp_id
+FROM ASSIGNMENT
+WHERE billable = 'Y'
+
+ORDER BY emp_id;
+```
+
+Which is the correct output?
+
+**Option A**
+
+| emp_id |
+| --- |
+| 4 |
+| 6 |
+
+**Option B**
+
+| emp_id |
+| --- |
+| 1 |
+| 3 |
+| 4 |
+| 6 |
+| 7 |
+
+**Option C**
+
+| emp_id |
+| --- |
+| 4 |
+| 6 |
+| 7 |
+
+**Option D**
+
+| emp_id |
+| --- |
+| 6 |
+
+(Correct answer: A)
+
+---
+
+## Final Answer Key
+
+| Question | Correct option | Main concept |
+| --- | --- | --- |
+| Q1 | A | UNION duplicate elimination and NULL |
+| Q2 | A | UNION ALL preserves duplicates |
+| Q3 | A | INTERSECT |
+| Q4 | A | EXCEPT and NULL |
+| Q5 | A | UNION with grouped results |
+| Q6 | A | INTERSECT across tables |
+| Q7 | A | Parentheses with UNION and EXCEPT |
+| Q8 | D | UNION ALL with source labels |
+| Q9 | A | EXCEPT with GROUP BY |
+| Q10 | A | INTERSECT followed by EXCEPT |
+
+**Important exam reminders:**
+
+- `UNION` removes duplicate complete rows.
+- `UNION ALL` preserves duplicate complete rows.
+- `INTERSECT` returns rows common to both result sets.
+- `EXCEPT` returns rows in the first result set but not the second.
+- Set operations compare columns by position, not by column name.
+- Corresponding columns must have compatible data types.
+- `ORDER BY` is applied to the final combined result.
+- NULL values are treated as equal for duplicate elimination and set comparison purposes.
