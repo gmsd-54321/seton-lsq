@@ -322,19 +322,19 @@ Focus: Scalar subqueries, IN, NOT IN, aggregate functions and simple nested quer
 
 Focus: ANY, ALL, EXISTS, NOT EXISTS, correlated and multiple-row subqueries.
 
-**Q16.** Find employees whose salary is greater than the salary of every employee in the HR department using ALL.
+**Q16.** Find employees whose salary is greater than the salary of every employee in the HR department using .
 
-**Q17.** Find employees whose salary is less than at least one employee in the Finance department using ANY.
+**Q17.** Find employees whose salary is less than at least one employee in the Finance department using .
 
 **Q18.** Find employees whose salary is greater than all employees in their own department.
 
-**Q19.** Find employees who have made at least one sale using EXISTS.
+**Q19.** Find employees who have made at least one sale .
 
-**Q20.** Find employees who have never made any sale using NOT EXISTS.
+**Q20.** Find employees who have never made any sale.
 
-**Q21.** Find departments that have at least one employee using EXISTS.
+**Q21.** Find departments that have at least one employee.
 
-**Q22.** Find departments that do not have any employees using NOT EXISTS.
+**Q22.** Find departments that do not have any employee.
 
 **Q23.** Find employees who have at least one completed sale.
 
